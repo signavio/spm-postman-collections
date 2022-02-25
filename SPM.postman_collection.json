@@ -1,0 +1,4187 @@
+{
+	"info": {
+		"_postman_id": "242ee287-00a4-4bcc-93cb-19d66e02cbac",
+		"name": "SPM",
+		"description": "REST API regarding User Activity Report functionality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Async Task",
+			"item": [
+				{
+					"name": "Excel Report",
+					"item": [
+						{
+							"name": "Generate Process Metrics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": \"false\",\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {},\n    \"mergeCells\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/processMetrics",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"processMetrics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Process Characteristics",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": false,\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {\n        \"includeIds\": false,\n        \"includeEl\": \"main\",\n        \"includeAttr\": \"custom\",\n        \"attributes\": null\n    },\n    \"mergeCells\": true\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/attributes",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"attributes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate IT Systems Diagrams",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": \"false\",\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {},\n    \"mergeCells\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/itsystems_diagrams",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"itsystems_diagrams"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate IT Systems Roles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": \"false\",\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {},\n    \"mergeCells\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/itsystems_roles",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"itsystems_roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Responsibility Handovers Matrix",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": \"false\",\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {},\n    \"mergeCells\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/handovers",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"handovers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Responsibility assignment matrix / RACI",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": \"false\",\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {},\n    \"mergeCells\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/raci",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"raci"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Risks & Controls",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"excel97Export\": \"false\",\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": null,\n    \"additionalItems\": {},\n    \"mergeCells\": \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/generate/iksreport",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"generate",
+										"iksreport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/excel-report/async/result/{{async-content-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"excel-report",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Process Documentation",
+					"item": [
+						{
+							"name": "Generate Process Documentation PDF",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"template\": \"pdfStyleSheetNew\",\n    \"includedirectlylinkedprocesses\": \"false\",\n    \"includelinkedprocesses\": \"false\",\n    \"models\": \"/model/{{async-model-id}}\",\n    \"author\": \"{{identifier}}\",\n    \"signavio-id\": \"e285e0a9f20145aa9d7e5c46a397ac21\",\n    \"generationDate\": \"19.01.2022\",\n    \"format\": \"pdf\",\n    \"title\": \"Process documentation\",\n    \"version\": \"1.0.0\",\n    \"timeout\": \"180000\",\n    \"filename\": \"Process documentation - 1.0.0.pdf\",\n    \"organization\": \"SunMoon Consultancy Limited\",\n    \"withComments\": \"false\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/process-documentation/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"process-documentation",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Process Documentation DOCX",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"template\": \"pdfStyleSheetNew\",\n    \"includedirectlylinkedprocesses\": \"false\",\n    \"includelinkedprocesses\": \"false\",\n    \"models\": \"/model/{{async-model-id}}\",\n    \"author\": \"{{identifier}}\",\n    \"signavio-id\": \"e285e0a9f20145aa9d7e5c46a397ac21\",\n    \"generationDate\": \"19.01.2022\",\n    \"format\": \"docx\",\n    \"title\": \"Process documentation\",\n    \"version\": \"1.0.0\",\n    \"timeout\": \"180000\",\n    \"filename\": \"Process documentation - 1.0.0.docx\",\n    \"organization\": \"SunMoon Consultancy Limited\",\n    \"withComments\": \"false\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/process-documentation/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"process-documentation",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/process-documentation/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"process-documentation",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/process-documentation/async/result/{{async-content-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"process-documentation",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cost & Resource Analysis",
+					"item": [
+						{
+							"name": "Generate Process Cost Analysis",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": [],\n    \"files\": [],\n    \"savedSearches\": [],\n    \"selectedGlossaryItems\": [],\n    \"modelTypes\": [],\n    \"isConsolidated\": false,\n    \"mode\": \"costmode\",\n    \"workingHoursPerDay\": 0.0,\n    \"technicalAllowance\": 0.0,\n    \"workingDaysPerYear\": 0.0,\n    \"personalAllowance\": 0.0,\n    \"excel97Export\": false,\n    \"useHierarchy\": false,\n    \"language\": \"en_us\",\n    \"mergeCells\": true\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/analysis-report/async/generate/analysis_costmode",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"analysis-report",
+										"async",
+										"generate",
+										"analysis_costmode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Resource Consumption Analysis",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": [],\n    \"files\": [],\n    \"savedSearches\": [],\n    \"selectedGlossaryItems\": [],\n    \"modelTypes\": [],\n    \"isConsolidated\": false,\n    \"mode\": \"timemode\",\n    \"workingHoursPerDay\": 0.0,\n    \"technicalAllowance\": 0.0,\n    \"workingDaysPerYear\": 0.0,\n    \"personalAllowance\": 0.0,\n    \"excel97Export\": false,\n    \"useHierarchy\": false,\n    \"language\": \"en_us\",\n    \"mergeCells\": true\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/analysis-report/async/generate/analysis_timemode",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"analysis-report",
+										"async",
+										"generate",
+										"analysis_timemode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/analysis-report/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"analysis-report",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/analysis-report/async/result/{{async-content-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"analysis-report",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Modeling Conventions",
+					"item": [
+						{
+							"name": "Generate Modeling Conventions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": [],\n    \"savedSearches\": [],\n    \"guidelineId\": \"96bcd9fe265b49089f2e66ef2221acf2\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/mgcheck-report/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"mgcheck-report",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/mgcheck-report/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"mgcheck-report",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/mgcheck-report/async/result/{{async-content-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"mgcheck-report",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Glossary Export",
+					"item": [
+						{
+							"name": "Export Glossary Items - All",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"languages\": [\n        \"en_gb\"\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export Glossary Items - Query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\" : \"contract\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export Glossary Items - Category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"category\" : \"/glossarycategory/eea7dbde633a426fbf95138a3530fabd\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export Glossary Items - Letter",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"category\" : \"/glossarycategory/eea7dbde633a426fbf95138a3530fabd\",\n    \"letter\": \"A\"\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/result/{{async-content-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Glossary Import",
+					"item": [
+						{
+							"name": "Import Glossary - Create New",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"insert\": true,\n    \"type\": \"import\",\n    \"tmpFileId\": \"{{glossary-import-tmp-file-id}}\",\n    \"sheetName\": \"Organizational_Units\",\n    \"categoryId\": \"{{glossary-import-category-id}}\",\n    \"mapKey\": {\n        \"excelColumnIndex\": 3,\n        \"glossaryPropertyId\": \"glossary.export.excel.id\",\n        \"glossaryPropertyLocale\": null\n    },\n    \"mapProperties\": [\n        {\n            \"excelColumnIndex\": 0,\n            \"glossaryPropertyId\": \"glossary.export.excel.title\",\n            \"glossaryPropertyLocale\": null\n        },\n        {\n            \"excelColumnIndex\": 1,\n            \"glossaryPropertyId\": \"glossary.export.excel.description\",\n            \"glossaryPropertyLocale\": null\n        },\n        {\n            \"excelColumnIndex\": 2,\n            \"glossaryPropertyId\": \"glossary.export.excel.attachments\",\n            \"glossaryPropertyLocale\": null\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-import/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-import",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-import/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-import",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"const downloadLink = responseJson.download;",
+											"const glossaryImportResultId = downloadLink.split('/').pop(); ",
+											"",
+											"pm.environment.set('glossary-import-result-id', glossaryImportResultId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-import/async/result/{{async-content-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-import",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Glossary",
+			"item": [
+				{
+					"name": "Import",
+					"item": [
+						{
+							"name": "Upload Glossary Import File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"const organizationUnitCategory = _.find(responseJson.glossaryProperties, 'categoryName', 'Organizational Units');",
+											"",
+											"pm.environment.set('glossary-import-tmp-file-id', responseJson.tmpFileId);",
+											"pm.environment.set('glossary-import-category-id', organizationUnitCategory.categoryId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "files/Signavio Dictionary Export.xlsx"
+										},
+										{
+											"key": "type",
+											"value": "upload",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/p/glossaryexcelimport",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"p",
+										"glossaryexcelimport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download Glossary Import Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"const organizationUnitCategory = _.find(responseJson.glossaryProperties, 'categoryName', 'Organizational Units');",
+											"",
+											"pm.environment.set('glossary-import-tmp-file-id', responseJson.tmpFileId);",
+											"pm.environment.set('glossary-import-category-id', organizationUnitCategory.categoryId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/p/glossaryexcelimport/{{glossary-import-result-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"p",
+										"glossaryexcelimport",
+										"{{glossary-import-result-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "User Activity Report",
+					"item": [
+						{
+							"name": "Trigger User Activity Report",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"const downloadLink = responseJson.downloadLink;",
+											"const temporaryStorageId = downloadLink.split('=')[1];",
+											"",
+											"pm.environment.set('temporary-storage-id', temporaryStorageId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "mode",
+											"value": "CURRENT_MONTH",
+											"type": "text"
+										},
+										{
+											"key": "mode",
+											"value": "PREVIOUS_MONTH",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/user-activity-report",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user-activity-report"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download User Activity Report",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\""
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0"
+									},
+									{
+										"key": "Upgrade-Insecure-Requests",
+										"value": "1"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
+									},
+									{
+										"key": "Accept",
+										"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "none"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "navigate"
+									},
+									{
+										"key": "Sec-Fetch-User",
+										"value": "?1"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "document"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}"
+									}
+								],
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/p/tempstorage?id={{temporary-storage-id}}&signavio-id={{x-signavio-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"p",
+										"tempstorage"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{temporary-storage-id}}"
+										},
+										{
+											"key": "signavio-id",
+											"value": "{{x-signavio-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set('session-id', pm.cookies.get('JSESSIONID'))",
+							"pm.environment.set('x-signavio-id', pm.cookies.get('token'))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{spm-host-protocol}}://{{spm-host}}/p/login",
+					"protocol": "{{spm-host-protocol}}",
+					"host": [
+						"{{spm-host}}"
+					],
+					"path": [
+						"p",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Select Tenant",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set('session-id', pm.cookies.get('JSESSIONID'))",
+							"pm.environment.set('x-signavio-id', pm.cookies.get('token'))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "login={{username}}; JSESSIONID={{session-id}};",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "tenantId",
+							"value": "{{target-tenant-id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{spm-host-protocol}}://{{spm-host}}/p/login",
+					"protocol": "{{spm-host-protocol}}",
+					"host": [
+						"{{spm-host}}"
+					],
+					"path": [
+						"p",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Config",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"95\", \"Chromium\";v=\"95\", \";Not A Brand\";v=\"99\""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "x-signavio-id",
+						"value": "{{x-signavio-id}}"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Referer",
+						"value": "http://spm.docker.localhost:8080/p/explorer"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "Cookie",
+						"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "W/\"1755813921\"",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{spm-host-protocol}}://{{spm-host}}/p/config",
+					"protocol": "{{spm-host-protocol}}",
+					"host": [
+						"{{spm-host}}"
+					],
+					"path": [
+						"p",
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Export Translations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-signavio-id",
+						"value": "{{x-signavio-id}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://{{spm-host}}",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors",
+						"type": "text"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty",
+						"type": "text"
+					},
+					{
+						"key": "Referers",
+						"value": "http://{{spm-host}}/p/explorer",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"model-ids\":[\"73773b020a4b4666aec91c81f608ebf4\"],\n    \"directory-ids\":[],\n    \"include-dictionary-content\":false\n}"
+				},
+				"url": {
+					"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/export-translations",
+					"protocol": "{{spm-host-protocol}}",
+					"host": [
+						"{{spm-host}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"export-translations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
