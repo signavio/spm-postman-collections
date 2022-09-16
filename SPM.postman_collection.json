@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "242ee287-00a4-4bcc-93cb-19d66e02cbac",
+		"_postman_id": "22586d4a-4b22-4049-8184-252a03bc7246",
 		"name": "SPM",
 		"description": "REST API regarding User Activity Report functionality",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -25,10 +25,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "66f2a28c-00ee-4992-a25c-313b81d3bf02"
 									}
 								}
 							],
+							"id": "b38cedca-d40b-4626-8396-b68a01a45f0c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -143,10 +148,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "23d561d1-b021-4988-8b6f-925fd44050b7"
 									}
 								}
 							],
+							"id": "cd6e967d-932c-4488-9112-aeff1af77cc7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -261,10 +271,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "4a04bca0-9bce-4b0c-89d9-db3bb9078010"
 									}
 								}
 							],
+							"id": "488f2b7d-570c-4f2c-b1bd-e5ea7fdfe9a5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -379,10 +394,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "18d4fe74-aa8f-4364-89a6-c07b5d256f5f"
 									}
 								}
 							],
+							"id": "88d4d07c-e5e7-41d8-9bef-68e81808d5c4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -497,10 +517,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "b57dc9b9-f966-4b0b-aa8b-631d77f92192"
 									}
 								}
 							],
+							"id": "f946105e-1a8e-486f-9cc5-a67882a95e6f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -615,10 +640,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "9521c94b-07af-4f29-aa9f-d919d378be8e"
 									}
 								}
 							],
+							"id": "13fec58b-f49d-4546-8c59-91f9c7b91fcf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -733,10 +763,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "ca8529ca-f2df-45d3-833a-b5cb3d4663bc"
 									}
 								}
 							],
+							"id": "07912edb-f653-432c-bcf7-b3e549e0e8e9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -851,10 +886,12 @@
 											"",
 											"pm.environment.set('async-content-id', responseJson.contentId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "81bd8d2b-3245-46d4-be14-1be21fb033d8"
 									}
 								}
 							],
+							"id": "7865ed7d-cc7e-4beb-a9eb-2972142067c5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -961,6 +998,7 @@
 						},
 						{
 							"name": "Download Report",
+							"id": "a45f0476-46cd-40b1-a569-0d3413ace439",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1065,7 +1103,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "79db5d6e-8a6a-42fc-a7f3-7252b3d9ef08"
 				},
 				{
 					"name": "Process Documentation",
@@ -1076,6 +1115,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "12fb7090-7ea5-4ec9-9acd-347f228bd54e",
 										"exec": [
 											"pm.response.to.have.status(202);",
 											"",
@@ -1087,6 +1127,10 @@
 									}
 								}
 							],
+							"id": "68a29926-3468-40b0-9174-40d23f62eeea",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1168,7 +1212,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"template\": \"pdfStyleSheetNew\",\n    \"includedirectlylinkedprocesses\": \"false\",\n    \"includelinkedprocesses\": \"false\",\n    \"models\": \"/model/{{async-model-id}}\",\n    \"author\": \"{{identifier}}\",\n    \"signavio-id\": \"e285e0a9f20145aa9d7e5c46a397ac21\",\n    \"generationDate\": \"19.01.2022\",\n    \"format\": \"pdf\",\n    \"title\": \"Process documentation\",\n    \"version\": \"1.0.0\",\n    \"timeout\": \"180000\",\n    \"filename\": \"Process documentation - 1.0.0.pdf\",\n    \"organization\": \"SunMoon Consultancy Limited\",\n    \"withComments\": \"false\"\n}"
+									"raw": "{\n    \"template\": \"pdfStyleSheetNew\",\n    \"includedirectlylinkedprocesses\": \"false\",\n    \"includelinkedprocesses\": \"false\",\n    \"models\": \"\",\n     \"directories\": \"/directory/5b33801f267745caba87d64be3237818\",\n    \"author\": \"{{identifier}}\",\n    \"signavio-id\": \"e285e0a9f20145aa9d7e5c46a397ac21\",\n    \"generationDate\": \"19.01.2022\",\n    \"format\": \"pdf\",\n    \"title\": \"Process documentation\",\n    \"version\": \"1.0.0\",\n    \"timeout\": \"180000\",\n    \"filename\": \"Process documentation - 1.0.0.pdf\",\n    \"organization\": \"SunMoon Consultancy Limited\",\n    \"withComments\": \"false\"\n}"
 								},
 								"url": {
 									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/process-documentation/async/generate",
@@ -1200,10 +1244,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "2216d5be-618e-4216-84aa-6b9ee2e23efc"
 									}
 								}
 							],
+							"id": "c9bf4ff8-aa8e-443c-b1aa-02d760791c2c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1317,10 +1366,12 @@
 											"",
 											"pm.environment.set('async-content-id', responseJson.contentId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "3e0cec5e-7055-4a9e-bae9-3816e126bfe8"
 									}
 								}
 							],
+							"id": "89fdd83a-b775-4dea-a417-ab47bc0fd3ad",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1427,6 +1478,7 @@
 						},
 						{
 							"name": "Download Report",
+							"id": "7837fb40-4529-494a-b3e1-600f7cd3ec77",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1531,7 +1583,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "849fbaa9-7696-4ebd-baa4-ed44de490a56"
 				},
 				{
 					"name": "Cost & Resource Analysis",
@@ -1549,10 +1602,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "6e6261d0-d65c-4f33-92d5-1af6b10c8260"
 									}
 								}
 							],
+							"id": "89b5bc15-ab54-4806-b328-fd7969a5549e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1667,10 +1725,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "a17b3059-be99-4f72-a9fb-5bca005b3410"
 									}
 								}
 							],
+							"id": "e1399d0d-637f-4afc-b295-c1134d73aa04",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1785,10 +1848,12 @@
 											"",
 											"pm.environment.set('async-content-id', responseJson.contentId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "0aeb9f40-56d9-47c4-afb0-fdf79fdbae57"
 									}
 								}
 							],
+							"id": "26375465-cbd1-4add-a9ae-8e680b9090c0",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1895,6 +1960,7 @@
 						},
 						{
 							"name": "Download Report",
+							"id": "8bd3d0d3-962f-43cf-8b06-7215364b3234",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1999,7 +2065,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "d0533d70-a04c-46f4-90fa-341cb1e091e9"
 				},
 				{
 					"name": "Modeling Conventions",
@@ -2010,6 +2077,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "8ebce9d3-f687-4d45-8238-8da9e693ee83",
 										"exec": [
 											"pm.response.to.have.status(202);",
 											"",
@@ -2021,6 +2089,10 @@
 									}
 								}
 							],
+							"id": "130c3ee7-a065-4daf-91ff-58011c1d00c1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2102,7 +2174,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": [],\n    \"savedSearches\": [],\n    \"guidelineId\": \"96bcd9fe265b49089f2e66ef2221acf2\"\n}"
+									"raw": "{\n    \"models\": [\n        \"/model/{{async-model-id}}\"\n    ],\n    \"directories\": [],\n    \"savedSearches\": [],\n    \"guidelineId\": \"341f00dce1254a3bbd98fe7d47febc64\"\n}"
 								},
 								"url": {
 									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/mgcheck-report/async/generate",
@@ -2134,10 +2206,12 @@
 											"",
 											"pm.environment.set('async-content-id', responseJson.contentId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "dee67b7d-422e-476d-b70e-77b510accb91"
 									}
 								}
 							],
+							"id": "da1d3063-d918-42a2-9e62-8149b85b32f6",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -2244,6 +2318,7 @@
 						},
 						{
 							"name": "Download Report",
+							"id": "ac4bebf9-7778-4f4c-ac62-16df2b86ff60",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -2348,7 +2423,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "018526f5-a9a9-406d-9ec7-f53aca376341"
 				},
 				{
 					"name": "Glossary Export",
@@ -2366,10 +2442,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "7b1d97ea-4fc2-4574-b383-9f944e498b1d"
 									}
 								}
 							],
+							"id": "c76c35bb-0471-4842-8ac5-fab78733888a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2483,10 +2564,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "261f37ff-4e1c-4955-87e2-55c8f7cc3f76"
 									}
 								}
 							],
+							"id": "c91d3d61-6895-4a59-8b31-2ea1ed947166",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2600,10 +2686,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "95c20cae-238c-40c1-8f62-dd6d16351e51"
 									}
 								}
 							],
+							"id": "0972414a-12db-4d1a-9e97-9515f4e401d9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2717,10 +2808,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "04556149-4393-4db9-9278-a2fc017a1bcf"
 									}
 								}
 							],
+							"id": "c98df776-b5e4-42fb-8399-0d1d158aed53",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2822,6 +2918,128 @@
 							"response": []
 						},
 						{
+							"name": "Export Glossary Items - Include Linking Models",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7b1d97ea-4fc2-4574-b383-9f944e498b1d",
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "97777fc7-ec87-4d9c-be23-570d0e192448",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"languages\": [\n        \"en_gb\"\n    ],\n    \"exportLinkingModels\": true\n}"
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/glossary-export/async/generate",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"glossary-export",
+										"async",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get Job Status",
 							"event": [
 								{
@@ -2834,10 +3052,12 @@
 											"",
 											"pm.environment.set('async-content-id', responseJson.contentId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "8d5c75c6-d771-4e3f-8e5a-6ed930ccb676"
 									}
 								}
 							],
+							"id": "f8cdb99f-831b-49ee-99d0-d9b861b3b674",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -2944,6 +3164,7 @@
 						},
 						{
 							"name": "Download Report",
+							"id": "4e7d0920-010f-48e2-9d67-41f039d7bac0",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -3048,7 +3269,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "42926f9d-097c-41f5-8bdd-d5aa852fbfe7"
 				},
 				{
 					"name": "Glossary Import",
@@ -3066,10 +3288,15 @@
 											"",
 											"pm.environment.set('async-job-id', responseJson.id)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "6261248f-83f6-47f1-8832-f95b2695ae09"
 									}
 								}
 							],
+							"id": "c49e1e80-273a-48b9-95f5-70893739536b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3183,10 +3410,12 @@
 											"",
 											"pm.environment.set('async-content-id', responseJson.contentId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "ffc55eb3-2f3c-47be-946d-c26556109f43"
 									}
 								}
 							],
+							"id": "88b61a47-a3a4-4922-b59e-b9aee3d514e4",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -3306,10 +3535,12 @@
 											"",
 											"pm.environment.set('glossary-import-result-id', glossaryImportResultId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "02d1b2cc-cb42-4afe-a329-c93bb48ec973"
 									}
 								}
 							],
+							"id": "41c4ed61-78d9-4be3-a644-d66aea0d12e9",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -3414,9 +3645,390 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "b995bc6f-4130-40db-8654-38095d536e79"
+				},
+				{
+					"name": "User Activity Report",
+					"item": [
+						{
+							"name": "User Activity Report - Create New",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6261248f-83f6-47f1-8832-f95b2695ae09",
+										"exec": [
+											"pm.response.to.have.status(202);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-job-id', responseJson.id)",
+											"pm.environment.set('user-activity-report-password', encodeURI(responseJson.password))"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "df96e000-abe1-46d3-92e1-5065932edb8b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/user-activity-report/async/generate?mode=CURRENT_MONTH",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user-activity-report",
+										"async",
+										"generate"
+									],
+									"query": [
+										{
+											"key": "mode",
+											"value": "CURRENT_MONTH"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ffc55eb3-2f3c-47be-946d-c26556109f43",
+										"exec": [
+											"pm.response.to.have.status(200);",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.environment.set('async-content-id', responseJson.contentId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "69197fca-ed9f-426f-92e4-a4f1928ee4bd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/user-activity-report/async/status/{{async-job-id}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user-activity-report",
+										"async",
+										"status",
+										"{{async-job-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Job Result",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "02d1b2cc-cb42-4afe-a329-c93bb48ec973",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "8e40f541-00bd-4310-a155-61af8e8ffdda",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Chromium\";v=\"92\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"92\"",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"type": "text"
+									},
+									{
+										"key": "x-signavio-id",
+										"value": "{{x-signavio-id}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "http://{{spm-host}}",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors",
+										"type": "text"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty",
+										"type": "text"
+									},
+									{
+										"key": "Referers",
+										"value": "http://{{spm-host}}/p/explorer",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8",
+										"type": "text"
+									},
+									{
+										"key": "Cookie",
+										"value": "login={{username}}; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier={{identifier}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{spm-host-protocol}}://{{spm-host}}/api/v2/user-activity-report/async/result/{{async-content-id}}?password={{user-activity-report-password}}",
+									"protocol": "{{spm-host-protocol}}",
+									"host": [
+										"{{spm-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"user-activity-report",
+										"async",
+										"result",
+										"{{async-content-id}}"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": "{{user-activity-report-password}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "d8e153db-0e9f-4557-a422-8ff7728c4b1d"
 				}
-			]
+			],
+			"id": "3bac5c3b-1690-4780-a72f-eb132ad91d9b"
 		},
 		{
 			"name": "Glossary",
@@ -3430,6 +4042,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "f6d767a4-0a0d-4554-b2fd-b24392bcc009",
 										"exec": [
 											"pm.response.to.have.status(200);",
 											"",
@@ -3443,6 +4056,10 @@
 									}
 								}
 							],
+							"id": "a898c90c-3a82-42a8-a6f4-5aa364d82b04",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3562,10 +4179,15 @@
 											"pm.environment.set('glossary-import-tmp-file-id', responseJson.tmpFileId);",
 											"pm.environment.set('glossary-import-category-id', organizationUnitCategory.categoryId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "430baafd-1352-438b-95b1-c89fed20f399"
 									}
 								}
 							],
+							"id": "280f0915-9bbe-4ab5-b40e-b22522bc052a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [
@@ -3645,9 +4267,11 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "1e0798e9-ccce-47ca-b40e-b0a331568f02"
 				}
-			]
+			],
+			"id": "76ef612c-b681-472b-9c63-79df8ea29257"
 		},
 		{
 			"name": "Report",
@@ -3670,10 +4294,15 @@
 											"",
 											"pm.environment.set('temporary-storage-id', temporaryStorageId)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"id": "1931c228-b404-48da-95b7-567e15239745"
 									}
 								}
 							],
+							"id": "159ac230-5eca-4c2c-8173-e59f6445f918",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3786,6 +4415,10 @@
 						},
 						{
 							"name": "Download User Activity Report",
+							"id": "8677bcc9-6335-49e0-9685-0a49956e178d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [
@@ -3862,9 +4495,11 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"id": "abf748ad-9422-41ba-b8ea-ef5e34dd2e10"
 				}
-			]
+			],
+			"id": "9d97f99b-5758-4232-b7d1-96c4cf4e6a7f"
 		},
 		{
 			"name": "Login",
@@ -3876,10 +4511,15 @@
 							"pm.environment.set('session-id', pm.cookies.get('JSESSIONID'))",
 							"pm.environment.set('x-signavio-id', pm.cookies.get('token'))"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"id": "8eabb55a-250b-4347-9088-136c52ba14c9"
 					}
 				}
 			],
+			"id": "e2b9ec89-3fa1-4f19-abe6-5457e468807b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -3936,10 +4576,15 @@
 							"pm.environment.set('session-id', pm.cookies.get('JSESSIONID'))",
 							"pm.environment.set('x-signavio-id', pm.cookies.get('token'))"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"id": "1798b6fe-ba34-4ed4-883e-bbc9231e36df"
 					}
 				}
 			],
+			"id": "f3beab9e-3e5c-4622-bf66-f867c1419b9a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -3993,6 +4638,10 @@
 		},
 		{
 			"name": "Retrieve Config",
+			"id": "5e5ea244-3b8b-4671-9a57-de281ce7b53b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -4081,10 +4730,15 @@
 						"exec": [
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"id": "2153ae3e-1bdf-4320-8cc2-2de20a34ec41"
 					}
 				}
 			],
+			"id": "b6a29456-9c65-48fa-a969-2994ad24da0f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "POST",
 				"header": [

@@ -1,0 +1,71 @@
+{
+  "info": {
+    "_postman_id": "3a72f2a6-a91d-43cd-90c1-b25990433277",
+    "name": "Feature Toggle",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List function toggles",
+      "id": "42217ebb-a3e1-4581-8fc3-17edb948fc8f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-signavio-id",
+            "value": "{{x-signavio-id}}",
+            "type": "default"
+          }
+        ],
+        "url": {
+          "raw": "https://{{spm-host}}/api/v2/ftoggles",
+          "protocol": "https",
+          "host": [
+            "{{spm-host}}"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "ftoggles"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Activate Feature Toggle",
+      "id": "d57cb169-3a11-43e9-a7c5-ab7c6f3ca27c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-signavio-id",
+            "value": "{{x-signavio-id}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{spm-host}}/api/v2/ftoggles/enable_sap_signavio_logo/deactivate",
+          "protocol": "https",
+          "host": [
+            "{{spm-host}}"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "ftoggles",
+            "enable_sap_signavio_logo",
+            "deactivate"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

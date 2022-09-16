@@ -1,0 +1,370 @@
+{
+  "info": {
+    "_postman_id": "ad61f24d-116f-49a7-aacc-591513f639ab",
+    "name": "File Storage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "78613133-e54f-47a3-bf7d-9dd53c4ba747",
+            "exec": [
+              "console.log('JWT not required')"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "6126cf02-a319-49af-ae09-9b9bddb36317",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{file-storage-protocol}}://{{file-storage-host}}/healthz",
+          "protocol": "{{file-storage-protocol}}",
+          "host": [
+            "{{file-storage-host}}"
+          ],
+          "path": [
+            "healthz"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Prometheus",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "78613133-e54f-47a3-bf7d-9dd53c4ba747",
+            "exec": [
+              "console.log('JWT not required')"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "777d6c1b-f585-4ccc-9bf2-a5067b2cb50e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{file-storage-protocol}}://{{file-storage-host}}/prometheus",
+          "protocol": "{{file-storage-protocol}}",
+          "host": [
+            "{{file-storage-host}}"
+          ],
+          "path": [
+            "prometheus"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload File",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "70b9ebea-d621-4fdc-8bf3-93d71cd26244",
+            "exec": [
+              "pm.response.to.have.status(200);",
+              "",
+              "const responseJson = pm.response.json();",
+              "",
+              "pm.environment.set('file-id', responseJson.fileId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "96083f5d-6cf0-488e-a7fb-37ba894cfdd7",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "c5ec0197-940a-4826-8fa9-586059d552a2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{file-storage-jwt-token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Tenant-ID",
+            "value": "2402b0f35f7c418dbdb13591686a9d59",
+            "type": "text"
+          },
+          {
+            "key": "X-User-ID",
+            "value": "8e24364ced9943b683de090832e4e652",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "fileToUpload",
+              "type": "file",
+              "src": "/Users/shumailarshad/Documents/Happy Birthday.pptx"
+            },
+            {
+              "key": "timeToLive",
+              "value": "ONE_DAY",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{file-storage-protocol}}://{{file-storage-host}}/files",
+          "protocol": "{{file-storage-protocol}}",
+          "host": [
+            "{{file-storage-host}}"
+          ],
+          "path": [
+            "files"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Download File",
+      "id": "3bf14435-bfc0-4ca6-9866-61cf03353669",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{file-storage-jwt-token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Tenant-ID",
+            "value": "2402b0f35f7c418dbdb13591686a9d59",
+            "type": "text"
+          },
+          {
+            "key": "X-User-ID",
+            "value": "8e24364ced9943b683de090832e4e652",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{file-storage-protocol}}://{{file-storage-host}}/files/{{file-id}}",
+          "protocol": "{{file-storage-protocol}}",
+          "host": [
+            "{{file-storage-host}}"
+          ],
+          "path": [
+            "files",
+            "{{file-id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "a67be117-39cc-4d96-857b-e191c19ebd3e",
+          "name": "Get File",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-ID",
+                "value": "2402b0f35f7c418dbdb13591686a9d59",
+                "type": "text"
+              },
+              {
+                "key": "X-User-ID",
+                "value": "8e24364ced9943b683de090832e4e652",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{file-storage-protocol}}://{{file-storage-host}}/files/{{file-id}}",
+              "protocol": "{{file-storage-protocol}}",
+              "host": [
+                "{{file-storage-host}}"
+              ],
+              "path": [
+                "files",
+                "{{file-id}}"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "raw",
+          "header": [
+            {
+              "key": "Content-Disposition",
+              "value": "attachment; filename=\"Process documentation - 1.0.0 (1).pdf\""
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1; mode=block"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/octet-stream"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 08 Apr 2022 11:15:21 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "responseTime": null,
+          "body": "%PDF-1.4\n%����\n1 0 obj\n<<\n/Creator (Apache FOP Version 2.5)\n/Producer (Apache FOP Version 2.5)\n/CreationDate (D:20220329065811Z)\n>>\nendobj\n2 0 obj\n<<\n  /N 3\n  /Length 3 0 R\n  /Filter /FlateDecode\n>>\nstream\nx��gPTY\u0016��{�\u0013\r�M���I��\u0006$�$A��@w�i��AQdp\u0004F\u0010\u0011I� ��\u0003�\u000eAFQ\u0011ŀ((��N#��2\u000e�\"**K�٭���U[�g��x�sO�s�[���\u0007�\f1���\f�\u0003��M��:�1��C\u0018�\u0007\u0000\u000bH�\b(\u0000\u001d�JN����\u0000�!�\u0005��c\u0000\u0012���\b�sϑ��>�\u0018\u001e�qy�v�y����%��\u0004.\u001b\u0000��ʱlN2k�w�r4;�-��\n8=%1\u0005\u0000�{�i��\u0001W�-��o�!�o\\�V��k���\u0000�\u0012��\u0018Z�\u0011kL�\u00160+��\u0000�t�j�\n+���|iA/�o3���`?�(\u000e��\u000bO�\u0019�f+�y�S/T�����7�\u001f�\u0011��o��r�L@�ʿr��\u0001`�\u0006\u0000Q�WN�\b\u0000�=\u0000t����8\u0001@W)\u0000��X���o9���\u0000\u000fȀ\u0006��<P\u0006\u001a@\u0007\u0018\u0002S`\u0001l�#p\u0003^�\u000f\u0004���\u0005�A\u0002��t�\u0003v�\u0002P\u0004J�!P\r�@#h\u0006m�,�\u0002\u0017�\u0015p\u001d�\u0006��(�\u0000|0\r^�\u0005�\u001e,C\u0010��H\u0010\u0015��\u0014 UH\u001b2���\u0015�\by@�P0\u0014\u0006EA\\(\u0015ʁ�@EP\u0019T\r�C��O�y�\nt\u0013\u001a�\u001eA��\u001c�'�\tF�D�\u0006��j�\u001ēmaw�\u000f�\u0002G�Ip\u0016�\u000f�+�\u0006�4�\t_�oã0\u001f~\u0005/\"\u0000���#\u0014\u0011:\b&�\u001e�\bAD\"x���BD\u0005�\u0001ц�A\f �#��y�G$\u001aIE2�:H\u000b�\u000b�\u001f�B&!w\"����S�Nd?�>r\u0012����\"�dQ�(s�+*\b\u0015�JG\u0015�*PM�\u000e�5�(j\u001a�\u001e�F���hS�\u000b:\u0018\u001d��F\u0017����ї���)�\"\u0006���hc,1^�pL\n�\u0000S�9���\u0019�Lc>`\tX\u0005�!�\t\u001b��b�\u0015�\u0016l/v\u0004;�]Ɖ�Tq�8/\u001c\u001b��+�5�zpwqӸe�\u0018^\u001do�����w�+�m�k�'��\u0004\u0002A�`F�!�\u0010v\u0011*\tg\b7\b���D\nQ�hO\f%�\u0012�\u0013O\u0012/\u0013\u001f\u0011ߒH$5�"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "1ad40a56-e3ee-4552-8fa3-cb004b20e33e",
+        "type": "text/javascript",
+        "exec": [
+          "// JWT generation script adapted from",
+          "// https://gist.github.com/corbanb/db03150abbe899285d6a86cc480f674d",
+          "",
+          "function base64url(source) {",
+          "    // Encode in classical base64",
+          "    encodedSource = CryptoJS.enc.Base64.stringify(source)",
+          "    ",
+          "    // Remove padding equal characters",
+          "    encodedSource = encodedSource.replace(/=+$/, '')",
+          "    ",
+          "    // Replace characters according to base64url specifications",
+          "    encodedSource = encodedSource.replace(/\\+/g, '-')",
+          "    encodedSource = encodedSource.replace(/\\//g, '_')",
+          "    ",
+          "    return encodedSource",
+          "}",
+          "",
+          "var jwtSecret = pm.environment.get('file-storage-jwt-secret') || ''",
+          "",
+          "// Set headers for JWT",
+          "var header = {",
+          "\t'typ': 'JWT',",
+          "\t'alg': 'HS256'",
+          "};",
+          "",
+          "// Prepare timestamp in seconds",
+          "var currentTimestamp = Math.floor(Date.now() / 1000)",
+          "",
+          "var data = {",
+          "\t'iss': 'signavio',",
+          "    'sub': pm.environment.get('username'),",
+          "\t'iat': currentTimestamp,",
+          "\t'exp': currentTimestamp + 30, // expiry time is 30 seconds from time of creation",
+          "    'ten': pm.environment.get('target-tenant-id') || '123456789',",
+          "    'uid': pm.environment.get('user-id') || '987654321',",
+          "\t'gue': false,",
+          "    'ano': false",
+          "}",
+          "",
+          "// encode header",
+          "var stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header))",
+          "var encodedHeader = base64url(stringifiedHeader)",
+          "",
+          "// encode data",
+          "var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data))",
+          "var encodedData = base64url(stringifiedData)",
+          "",
+          "// build token",
+          "var token = `${encodedHeader}.${encodedData}`",
+          "",
+          "// sign token",
+          "var signature = CryptoJS.HmacSHA256(token, jwtSecret)",
+          "signature = base64url(signature)",
+          "var signedToken = `${token}.${signature}`",
+          "",
+          "pm.environment.set('file-storage-jwt-token', signedToken)",
+          "console.log('Signed and encoded JWT', signedToken)"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "8aebd117-f120-4026-94bb-0030a46f7a65",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

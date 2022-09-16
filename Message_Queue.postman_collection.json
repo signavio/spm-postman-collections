@@ -1,0 +1,266 @@
+{
+  "info": {
+    "_postman_id": "a4eb8eeb-8873-4f74-82fb-12da360fb3ee",
+    "name": "Message Queue",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "57bbff69-829c-40a7-93ba-3daea85ae7ba",
+            "exec": [
+              "var tokenResponse = pm.response.json()",
+              "pm.environment.set('message-queue-access-token', tokenResponse[\"access_token\"])"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "id": "f4cafd44-0d28-4e62-89e4-db71436a83c7",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "default"
+            },
+            {
+              "key": "response_type",
+              "value": "token",
+              "type": "default"
+            },
+            {
+              "key": "client_id",
+              "value": "{{message-queue-client-id}}",
+              "type": "default"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{message-queue-client-secret}}",
+              "type": "default"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://{{message-queue-token-url}}/oauth/token",
+          "protocol": "https",
+          "host": [
+            "{{message-queue-token-url}}"
+          ],
+          "path": [
+            "oauth",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Queues",
+      "id": "f6290469-60a1-4560-85a9-859eb3582ff2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{message-queue-access-token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{message-queue-url}}/v1/management/queues",
+          "protocol": "https",
+          "host": [
+            "{{message-queue-url}}"
+          ],
+          "path": [
+            "v1",
+            "management",
+            "queues"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Queue By Name",
+      "id": "51e9e4ef-c8a0-4cab-b480-7c07e9579ba5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{message-queue-access-token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{message-queue-url}}/v1/management/queues/Consumer.SPM.Entities.ANNA?messageStatistics=true",
+          "protocol": "https",
+          "host": [
+            "{{message-queue-url}}"
+          ],
+          "path": [
+            "v1",
+            "management",
+            "queues",
+            "Consumer.SPM.Entities.ANNA"
+          ],
+          "query": [
+            {
+              "key": "messageStatistics",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Queue Subscriptions",
+      "id": "f2e9f573-cd0e-4d25-b042-ec0ea995851d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{message-queue-access-token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{message-queue-url}}/v1/management/queues/Consumer.SPM.Entities.ANNA/subscriptions/topics",
+          "protocol": "https",
+          "host": [
+            "{{message-queue-url}}"
+          ],
+          "path": [
+            "v1",
+            "management",
+            "queues",
+            "Consumer.SPM.Entities.ANNA",
+            "subscriptions",
+            "topics"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Subscribe Queue to Topic",
+      "id": "e8c28cbc-cfec-411f-9cd4-4edcaf4ea8d3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{message-queue-access-token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{message-queue-url}}/v1/management/queues/Consumer.SPM.Entities/subscriptions/topics/:topicName",
+          "protocol": "https",
+          "host": [
+            "{{message-queue-url}}"
+          ],
+          "path": [
+            "v1",
+            "management",
+            "queues",
+            "Consumer.SPM.Entities",
+            "subscriptions",
+            "topics",
+            ":topicName"
+          ],
+          "variable": [
+            {
+              "key": "topicName",
+              "value": "+%2Fspm-extractor%2F*"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove Topic Subscriptions",
+      "id": "b2ca270e-b02c-419e-8bd3-e7b53d365040",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{message-queue-access-token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{message-queue-url}}/v1/management/queues/Consumer.SPM.Entities/subscriptions/topics/:topicName",
+          "protocol": "https",
+          "host": [
+            "{{message-queue-url}}"
+          ],
+          "path": [
+            "v1",
+            "management",
+            "queues",
+            "Consumer.SPM.Entities",
+            "subscriptions",
+            "topics",
+            ":topicName"
+          ],
+          "variable": [
+            {
+              "id": "f65d2293-6622-44a6-92d7-be29db68ea09",
+              "key": "topicName",
+              "value": "+%2Fspm-extractor%2F*"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

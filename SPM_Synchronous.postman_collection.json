@@ -1,0 +1,194 @@
+{
+  "info": {
+    "_postman_id": "576ac7f7-00ad-4f9d-9b60-e08c6c6ccd23",
+    "name": "SPM Synchronous",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Legacy",
+      "item": [
+        {
+          "name": "Excel Report",
+          "id": "04aafca6-f69e-41ba-85b0-1d4e27b36a0c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "reportType",
+                  "value": "handovers",
+                  "type": "default"
+                },
+                {
+                  "key": "excel97Export",
+                  "value": "false",
+                  "type": "default"
+                },
+                {
+                  "key": "models",
+                  "value": "/model/84021287ab1a476bb2a45b63c64867a1",
+                  "type": "default"
+                },
+                {
+                  "key": "signavio-id",
+                  "value": "43a2b96b553341b2abb568fe864776bb",
+                  "type": "default"
+                },
+                {
+                  "key": "language",
+                  "value": "en_us",
+                  "type": "default"
+                },
+                {
+                  "key": "mergeCells",
+                  "value": "true",
+                  "type": "default"
+                },
+                {
+                  "key": "Cookie",
+                  "value": "login=admin@signavio.com; login=shumail.arshad@signavio.com; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier=Shumail+Arshad",
+                  "type": "default"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://spm.docker.localhost:8080/p/excel-report",
+              "protocol": "http",
+              "host": [
+                "spm",
+                "docker",
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "p",
+                "excel-report"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Process Documentation",
+          "id": "b7db71e5-91ab-4c30-a31f-6e8ac80f1e8e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "template",
+                  "value": "pdfStyleSheetKaiserKraft",
+                  "type": "default"
+                },
+                {
+                  "key": "includedirectlylinkedprocesses",
+                  "value": "false",
+                  "type": "default"
+                },
+                {
+                  "key": "includelinkedprocesses",
+                  "value": "false",
+                  "type": "default"
+                },
+                {
+                  "key": "models",
+                  "value": "/model/df2afaa0a4de4316b2261a06bc76e888",
+                  "type": "default"
+                },
+                {
+                  "key": "author",
+                  "value": "Davi Vieira",
+                  "type": "default"
+                },
+                {
+                  "key": "signavio-id",
+                  "value": "43a2b96b553341b2abb568fe864776bb",
+                  "type": "default",
+                  "disabled": true
+                },
+                {
+                  "key": "generationDate",
+                  "value": "1.03.2022",
+                  "type": "default"
+                },
+                {
+                  "key": "format",
+                  "value": "pdf",
+                  "type": "default"
+                },
+                {
+                  "key": "title",
+                  "value": "Process documentation22222",
+                  "type": "default"
+                },
+                {
+                  "key": "version",
+                  "value": "1.2.0",
+                  "type": "default"
+                },
+                {
+                  "key": "filename",
+                  "value": "Process documentation - 1.2.0.pdf",
+                  "type": "default"
+                },
+                {
+                  "key": "organization",
+                  "value": "Casa",
+                  "type": "default"
+                },
+                {
+                  "key": "withComments",
+                  "value": "false",
+                  "type": "default"
+                },
+                {
+                  "key": "Cookie",
+                  "value": "login=davi.selio@signavio.com; JSESSIONID={{session-id}}; token={{x-signavio-id}}; identifier=Davi",
+                  "type": "default"
+                },
+                {
+                  "key": "signavio-id",
+                  "value": "{{x-signavio-id}}",
+                  "type": "default"
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://spm.docker.localhost:8080/p/docu/Process%20documentation%20-%201.2.0.pdf%0a%0a  2022-03-01 10:50:52,177  INFO Fake log entry",
+              "protocol": "http",
+              "host": [
+                "spm",
+                "docker",
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "p",
+                "docu",
+                "Process%20documentation%20-%201.2.0.pdf%0a%0a  2022-03-01 10:50:52,177  INFO Fake log entry"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d164de38-2296-4fe0-80d9-b08c84fb3156"
+    }
+  ]
+}

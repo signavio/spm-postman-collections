@@ -1,0 +1,4393 @@
+{
+  "info": {
+    "_postman_id": "a056a27b-0766-494e-9742-a1c920a8974d",
+    "name": "ETL Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "pi-etl-extractor",
+      "item": [
+        {
+          "name": "/allTables",
+          "id": "f0f8e32c-dd76-405e-84a5-dd9b728785b8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"connectionInformation\": {\n\t\t\"datasourceType\": \"SALESFORCEAPPX\",\n\t\t\"cdataLicense\": \"{{cdata-license}}\",\n\t\t\"authenticationDetails\": {\n\t\t\t\"refreshToken\": \"{{refresh-token}}\",\n\t        \"loginUrl\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n\t        \"enterpriseUrl\": \"/services/Soap/c/47.0/00D2p0000014Bxd\",\n\t        \"oauthClientId\": \"3MVG96_7YM2sI9wSjxQod_Z0muDIbVaHjvu7PjP9mWBbywXrQm0FtrCF3txDttYkPNV7wFsMoikye9eeoeuqr\",\n\t        \"oauthClientSecret\": \"{{oauth-client-secret}}\"\n\t\t}\n\t}\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-extractor-url}}/allTables",
+              "host": [
+                "{{pi-etl-extractor-url}}"
+              ],
+              "path": [
+                "allTables"
+              ]
+            },
+            "description": "get all tables in connection, using metadata API"
+          },
+          "response": []
+        },
+        {
+          "name": "/tableSchema",
+          "id": "26c5f8cc-4762-4309-8a4e-325ac7645aa1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"connectionInformation\": {\n\t\t\"datasourceType\": \"SALESFORCEAPPX\",\n\t\t\"cdataLicense\": \"{{cdata-license}}\",\n\t\t\"authenticationDetails\": {\n\t\t\t\"refreshToken\": \"{{refresh-token}}\",\n\t        \"loginUrl\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n\t        \"enterpriseUrl\": \"/services/Soap/c/47.0/00D2p0000014Bxd\",\n\t        \"oauthClientId\": \"3MVG96_7YM2sI9wSjxQod_Z0muDIbVaHjvu7PjP9mWBbywXrQm0FtrCF3txDttYkPNV7wFsMoikye9eeoeuqr\",\n\t        \"oauthClientSecret\": \"{{oauth-client-secret}}\"\n\t\t}\n\t},\n\t\"tableName\": \"Account\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-extractor-url}}/tableSchema",
+              "host": [
+                "{{pi-etl-extractor-url}}"
+              ],
+              "path": [
+                "tableSchema"
+              ]
+            },
+            "description": "get all tables in connection, using metadata API"
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "8ae3bac9-7c03-478e-ab6e-2e503e0b2e53",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5a2c921d-b192-4a30-af92-7214d287681c"
+    },
+    {
+      "name": "pi-etl-core",
+      "item": [
+        {
+          "name": "Data Sources",
+          "item": [
+            {
+              "name": "/datasources/",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "773ff756-bedf-4c99-a21e-09de62575a8e"
+                  }
+                }
+              ],
+              "id": "274a25e4-c70d-428f-bd41-d372e035dac1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"DS13\",\n    \"type\": \"ACCESS_TOKEN\",\n    \"system\": \"INGESTION_API\",\n    \"credentialFields\": [\n        {\n            \"type\": \"API_ENDPOINT\",\n            \"position\": 0\n        },\n        {\n            \"type\": \"TOKEN\",\n            \"position\": 1\n        }\n    ],\n    \"validByDefault\" : true\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/ ODATA OAUTH",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "3db9be22-355b-4302-9f7e-3cb0d820131e"
+                  }
+                }
+              ],
+              "id": "14c80e2b-25ba-4989-a4c9-324a596c749e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/:id/validate",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "9c21b8ed-58ac-4c1b-8183-3c9138ccda64"
+                  }
+                }
+              ],
+              "id": "25c650cf-d33b-4a58-a972-e15e9780abb0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}/validate",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}",
+                    "validate"
+                  ]
+                },
+                "description": "Validate a stored datasource.\nThe validity flag of datasource is expected to be updated accordingly."
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/:id/validate Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "3b8ed189-e25e-4336-b3f6-0eb368cc38ae"
+                  }
+                }
+              ],
+              "id": "3b633db5-a591-4962-badf-a33ac36d78d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}/validate",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}",
+                    "validate"
+                  ]
+                },
+                "description": "Validate a stored datasource.\nThe validity flag of datasource is expected to be updated accordingly."
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                      "pm.environment.set(\"integration-id\", jsonData.payload.integrations[0])"
+                    ],
+                    "type": "text/javascript",
+                    "id": "569ff564-f69f-48b7-93bf-8220dc80f776"
+                  }
+                }
+              ],
+              "id": "ff3fe2a0-f29c-402b-b70e-446038f8a336",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/types",
+              "id": "112bbb81-7268-45c1-9370-1ff514ea404a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources"
+                  ]
+                },
+                "description": "Lists available types that are selectable from UI when creating a new Datasource."
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/{dataSourceId}",
+              "id": "f86b0c13-2f7b-4ad3-9126-36d3a90ceec3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/{dataSourceId}",
+              "id": "7175abdf-3838-4b38-a38a-e4418514f846",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"pi.salesforce-appexchange@signavio.com.pkg.admin\"\n        },\n        {\n            \"type\": \"PASSWORD\",\n            \"value\": \"RCrpQbsdeATuT5\"\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\",\n            \"value\": \"PRfoVL6O8wZs4DDTlEnGJ42U\"\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/{dataSourceId}/unlink-onprem",
+              "id": "f3fdd63e-fda0-4a6a-88c8-fb95cca20061",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}/unlink-onprem",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}",
+                    "unlink-onprem"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/{data-source-id}/checkcredentials",
+              "id": "410c7ccb-f9f7-4d6c-bf23-2e6923293689",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"credentialFields\": [\n    {\n      \"type\": \"USER_NAME\",\n      \"value\": \"demo+sf@signavio.com\"\n    },\n    {\n      \"type\": \"PASSWORD\",\n      \"value\": \"DemoSalesforce1\"\n    },\n    {\n      \"type\": \"SECURITY_TOKEN\",\n      \"value\": \"lLi7YGYBfhJ49qkXjS9awVPc\"\n    }\n  ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}/checkcredentials",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}",
+                    "checkcredentials"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datasources/{dataSourceId}",
+              "id": "b23fe87a-8ad2-412c-b3a7-d51e309a6e59",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    "{{data-source-id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "53b73c1d-4e9e-41ad-a633-c578ef8b94f9"
+        },
+        {
+          "name": "OnPremConfigurations",
+          "item": [
+            {
+              "name": "/on-prem",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "454c58b5-4d58-4ca5-a142-55e2bd751358"
+                  }
+                }
+              ],
+              "id": "3a773200-e7bc-4258-9904-3b9ddde64121",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/on-prem/",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "on-prem",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/on-prem/{Id}",
+              "id": "1ab7c239-0934-4584-ba97-65ecd8e27a26",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/on-prem/{{onprem-config-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "on-prem",
+                    "{{onprem-config-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/on-prem/{Id}",
+              "id": "60e8404d-bf30-426c-87bb-820e1ecb208b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"name updated from postman\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/on-prem/{{onprem-config-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "on-prem",
+                    "{{onprem-config-id}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/on-prem",
+              "id": "b3a75b9b-d3b1-4f97-b5f7-6d5dd595f85e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"a-new-on-prem-config-from-postman\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/on-prem",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "on-prem"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/on-prem/{Id}",
+              "id": "075167d7-b410-4512-a33d-78177dbf3cfd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/on-prem/{{onprem-config-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "on-prem",
+                    "{{onprem-config-id}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "ad7e4d4c-5638-44f3-a6af-0afad292aa2d"
+        },
+        {
+          "name": "Salesforce AppX",
+          "item": [
+            {
+              "name": "/sf-init",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-model-id\", jsonData.payload)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "884cb7f8-c362-48de-ad18-df924d8148b0"
+                  }
+                }
+              ],
+              "id": "53450ecd-5492-4e87-9a27-54df35c2b2c0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"processId\":\"opportunitytolead--test-etl-n-1\",\n\t\"loginUrl\":\"https://signavio-pkg-dev-ed.my.salesforce.com\",\n\t\"tenantId\":\"377c851c-06ff-4916-8c30-c5eaeb437849\",\n\t\"piToken\":\"0e9ca4330a6f4c067680e1caacde27e078cc45f4ff57795b282e5ffefcab12f6864f2473ac5899ca\",\n\t\"enterpriseUrl\":\"/services/Soap/c/47.0/00D2p0000014Bxd\",\n\t\"userId\":\"e24b306c-f9a0-11e9-8f0b-bbbbbbbbbbbb\",\n\t\"refreshToken\":\"5Aep861F1.ndOFuBX2cCCuTmabtM8K5cstRWUQuZsc3Y3EdentDNFCVD6Lt59I9GQjfmNilhPE6.k9wi_ZfCAgg\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/sf-init",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "sf-init"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "0a96305b-cf79-4000-a6b3-13b5b97213f6",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "id": "110a0b16-0ef8-473c-a5c3-a9fac75e0d34"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "id": "9579f4cc-c1a3-47d1-96d8-77d3c353faf1"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Integrations",
+          "item": [
+            {
+              "name": "Tables",
+              "item": [
+                {
+                  "name": "/integrations/{integrationId}/tables",
+                  "id": "4bc63b36-7649-4ef9-bc26-106bda632d46",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{jwt-token}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/integrations/af7ed36e-3ca7-4d47-864d-c35bd536ff0c/tables",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "af7ed36e-3ca7-4d47-864d-c35bd536ff0c",
+                        "tables"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/integrations/{integrationId}/tables",
+                  "id": "4d09d337-e69b-4fea-a5ad-3439f7ca69ed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{jwt-token}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"DUMMY\",\n  \"columns\": [\n    {\n      \"name\": \"col1\",\n      \"type\": \"INTEGER\",\n      \"key\": true\n    },\n    {\n      \"name\": \"col2\",\n      \"type\": \"TEXT\",\n      \"key\": false\n    },\n    {\n      \"name\": \"col3\",\n      \"type\": \"DATE\",\n      \"key\": false\n    }\n  ]\n}"
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/integrations/{{integration-id}}/tables",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "integrations",
+                        "{{integration-id}}",
+                        "tables"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/tables/{tableId}",
+                  "id": "86cc690f-d0f9-427a-9598-eeed4a6bd698",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJ1Z3IiOltdLCJhbm8iOmZhbHNlLCJmdHMiOltdLCJlZ2kiOltdLCJpc3MiOiJzaWduYXZpbyIsInVpZCI6ImR1bW15VGVzdFVzZXJJZCIsImd1ZSI6ZmFsc2UsIm9jbCI6Int9IiwiZXhwIjoxNTg2Mzg1MzkyLCJ0ZW4iOiI2OGU5ZmVlNTk3OTg0NjAwOTdhZjliZGUyNzkxOTZjZiIsImlhdCI6MTU4NjI5ODk5Miwib3NjIjpbXX0.pBqBwL9E1aaDa0i5JT2UmowqVWAyLaPxsmX0065TUpw"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n\t \"tableName\": \"Lead\",\n      \"sqlFilter\": \"where x = 1\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/tables/61ad3364-ad66-4ee0-9d0f-1f793833dfdc",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "tables",
+                        "61ad3364-ad66-4ee0-9d0f-1f793833dfdc"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/tables/{tableId}",
+                  "id": "3afb13bc-3d76-4483-98a6-d4984756d6f1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJ1Z3IiOltdLCJhbm8iOmZhbHNlLCJmdHMiOltdLCJlZ2kiOltdLCJpc3MiOiJzaWduYXZpbyIsInVpZCI6ImR1bW15VGVzdFVzZXJJZCIsImd1ZSI6ZmFsc2UsIm9jbCI6Int9IiwiZXhwIjoxNTg1OTkzNTU0LCJ0ZW4iOiJmOGNhZTljMTQwMjQ0MzNmOGRiMjgzNWU5ODJkZjc0YiIsImlhdCI6MTU4NTkwNzE1NCwib3NjIjpbXX0.NwShvcoo-ZlioTRz7tR6zvdY_dVayP90aOBjU_1Wi3k"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/tables/e77f6012-141c-4e81-839a-cf845dec760c",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "tables",
+                        "e77f6012-141c-4e81-839a-cf845dec760c"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/tables/{tableId}",
+                  "id": "b8a4f2d7-6ff9-4752-91d6-ba94a1bad6cf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{jwt-token}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/tables/6d4f93ac-cebe-48a2-a03a-bd3b611695ac",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "tables",
+                        "6d4f93ac-cebe-48a2-a03a-bd3b611695ac"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "id": "748da7a1-13de-4345-81e4-5b045c6b9177"
+            },
+            {
+              "name": "/integrations",
+              "id": "87f335ae-aa08-404a-b8da-86e6998b9fda",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/integrations",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/integrations",
+              "id": "6860c155-5c96-4622-9f9a-73b8d2ecd352",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"New Integration\",\n    \"datasourceId\": \"{{data-source-id}}\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/integrations",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "integrations"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/integrations/{integrationId}",
+              "id": "5cf385e6-1386-4c24-b3a2-9eee050986ff",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/integrations/04cfec55-147e-4bd6-8201-bae3a3e919d4",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "integrations",
+                    "04cfec55-147e-4bd6-8201-bae3a3e919d4"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/integrations/{integrationId}",
+              "id": "d2e4dca9-bee8-43f6-a5de-1273e63d6227",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/integrations/daf25264-7fed-427c-a9c0-f504a032ca4f",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "integrations",
+                    "daf25264-7fed-427c-a9c0-f504a032ca4f"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/integrations/{integrationId}",
+              "id": "1e0f98f5-cb9b-4572-ba95-34bc50fcf710",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"navid-testing\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/integrations/4de2033a-91de-4617-976c-84020e98316c",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "integrations",
+                    "4de2033a-91de-4617-976c-84020e98316c"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/integrations/{integrationId}/scheduler",
+              "id": "c5c25433-f6ad-4f55-bb60-52c355d8ebb7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJ1Z3IiOltdLCJhbm8iOmZhbHNlLCJmdHMiOltdLCJlZ2kiOltdLCJpc3MiOiJzaWduYXZpbyIsInVpZCI6ImR1bW15VGVzdFVzZXJJZCIsImd1ZSI6ZmFsc2UsIm9jbCI6Int9IiwiZXhwIjoxNTg1OTkzNTU0LCJ0ZW4iOiJmOGNhZTljMTQwMjQ0MzNmOGRiMjgzNWU5ODJkZjc0YiIsImlhdCI6MTU4NTkwNzE1NCwib3NjIjpbXX0.NwShvcoo-ZlioTRz7tR6zvdY_dVayP90aOBjU_1Wi3k"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"\",\n    \"datasource\": {\n        \"credentialFields\": [\n            {\n                \"type\": \"REFRESH_TOKEN\",\n                \"value\": \"5Aep861F1.ndOFuBX2cCCuTmabtM8K5cstRWUQuZsc3Y3EdentDNFCVD6Lt59I9GQjfmNilhPE6.k9wi_ZfCAgg\"\n            },\n            {\n                \"type\": \"LOGIN_URL\",\n                \"value\": \"https://signavio-pkg-dev-ed.my.salesforce.com\"\n            },\n            {\n                \"type\": \"ENTERPRISE_URL\",\n                \"value\": \"/services/Soap/c/47.0/00D2p0000014Bxd\"\n            }\n        ]\n    }\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/integrations/1c0a0dd3-041a-4b9d-94ed-ef93ac868ace",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "integrations",
+                    "1c0a0dd3-041a-4b9d-94ed-ef93ac868ace"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/integrations/{integrationId}/metadata/tables",
+              "id": "1514597f-ac0d-4453-9519-93f8d71e65bf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": ""
+                },
+                "description": "Get all available table names for a given integration by querying the metadata API on the datasource via etl-extractor"
+              },
+              "response": []
+            }
+          ],
+          "id": "4dea0b0d-980c-4442-ac8c-4e9c99e68371"
+        },
+        {
+          "name": "Data Models",
+          "item": [
+            {
+              "name": "Import/Export",
+              "item": [
+                {
+                  "name": "/data-models/import",
+                  "id": "717a3332-b892-4f88-8d38-96fa778c38a3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{jwt-token}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "processId",
+                          "value": "foo-process",
+                          "type": "text"
+                        },
+                        {
+                          "key": "uploadToken",
+                          "value": "bar-token",
+                          "type": "text"
+                        },
+                        {
+                          "key": "template",
+                          "type": "file",
+                          "src": "/Users/moustafakandeel/dev/pi-etl-core/src/integrationTest/resources/salesforce lead to quote.etl"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/data-models/import",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "data-models",
+                        "import"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "/data-models/{data-model-id}/export",
+                  "id": "a52ee565-45a2-4f2e-9a28-c7aa67c459b2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{jwt-token}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "processId",
+                          "value": "foo-process",
+                          "type": "text"
+                        },
+                        {
+                          "key": "uploadToken",
+                          "value": "bar-token",
+                          "type": "text"
+                        },
+                        {
+                          "key": "template",
+                          "type": "file",
+                          "src": "/Users/moustafakandeel/dev/pi-etl-core/src/integrationTest/resources/salesforce lead to quote.etl"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-core-url}}/data-models/{{data-model-id}}/export",
+                      "host": [
+                        "{{pi-etl-core-url}}"
+                      ],
+                      "path": [
+                        "data-models",
+                        "{{data-model-id}}",
+                        "export"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "id": "13a308ad-5021-4754-a697-af4b42a69099"
+            },
+            {
+              "name": "/data-models/{data-model-id}",
+              "id": "64644f4d-a806-4e9d-9960-8e3234bd3a0c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/data-models/{{data-model-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "data-models",
+                    "{{data-model-id}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/data-models/templates",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "168ba081-07f9-41d6-bd75-316d56c9e334"
+                  }
+                }
+              ],
+              "id": "e8963b4e-d0ab-42e9-aa35-aa5b3c68c5b1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/data-models/templates",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "data-models",
+                    "templates"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/data-models/hero/{data-model-id}",
+              "id": "c52ed7ee-7465-4e9f-a8da-87d17f61e648",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/data-models/hero/{{data-model-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "data-models",
+                    "hero",
+                    "{{data-model-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/data-models",
+              "id": "922127c7-0b0a-405b-955c-5c8b7d269fce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/data-models",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "data-models"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/data-models/hero/{dataModelId}",
+              "id": "344705fb-cfd1-4de6-8e80-6d924771d331",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"9f014f7e-55e6-4265-a4da-f4426f5c24af\",\n  \"businessProcess\": {\n    \"id\": \"{{business-process-id}}\",\n    \"activities\": [\n      {\n        \"name\": \"activity1\",\n        \"relations\": [\n          \"{{business-object-id}}\"\n        ]\n      },\n      {\n        \"name\": \"activity2\",\n        \"relations\": [\n           \"{{business-object-id}}\"\n        ]\n      },\n      {\n        \"name\": \"activity3\",\n        \"relations\": [\n          \"{{business-object2-id}}\"\n        ]\n      }\n    ]\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/data-models/hero/{{data-model-id}}",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "data-models",
+                    "hero",
+                    "{{data-model-id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/datamodels/process/uploadToken",
+              "id": "962b3361-0204-4307-9703-1147ae7adb1b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processId\": \"dummyProcessId\",\n  \"piUploadToken\": \"new-bla-bla-token\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datamodels/process/uploadToken",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datamodels",
+                    "process",
+                    "uploadToken"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "fa89398b-2daf-446c-8e86-1cefd86f6a29"
+        },
+        {
+          "name": "Business Objects",
+          "item": [
+            {
+              "name": "/business-objects/{business-object-id}",
+              "id": "34bc98be-6ad7-476c-bdd3-b406998fc1d2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/business-objects/9fa93674-6eff-4a2b-95b9-05cad1f25fce",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "business-objects",
+                    "9fa93674-6eff-4a2b-95b9-05cad1f25fce"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/business-objects/{business-object-id}/preview",
+              "id": "05f50c11-2855-4691-aba8-086993d8ccd8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/business-objects/{{business-object-id}}/preview",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "business-objects",
+                    "{{business-object-id}}",
+                    "preview"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "ab07fc22-bc0b-4e60-a17c-6c8542c77b1b"
+        },
+        {
+          "name": "EtlExecutionHistory",
+          "item": [
+            {
+              "name": "/executions/:executionId/eventlog/presigned-url",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "27141a8c-9f05-45b3-be7d-d8ea7d124d80"
+                  }
+                }
+              ],
+              "id": "a99561f8-bbd1-47ff-86b7-f67aa08eab4a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/executions/29a67df6-1b29-41f5-975e-50dfea6f4850/eventlog/presigned-url",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "executions",
+                    "29a67df6-1b29-41f5-975e-50dfea6f4850",
+                    "eventlog",
+                    "presigned-url"
+                  ]
+                },
+                "description": "Validate a stored datasource.\nThe validity flag of datasource is expected to be updated accordingly."
+              },
+              "response": []
+            }
+          ],
+          "id": "8d03579d-52fd-475a-898e-de4206a36c1b"
+        }
+      ],
+      "id": "571bdae2-18cb-4145-bf71-98e1c09696ee"
+    },
+    {
+      "name": "pi-etl-bridge",
+      "item": [
+        {
+          "name": "testConnection",
+          "id": "e84dbc28-66e9-40ee-9f58-43b78328e03c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"connectionInformation\": {\n\t\t\"datasourceType\": \"SALESFORCEAPPX\",\n\t\t\"cdataLicense\": \"{{cdata-license}}\",\n\t\t\"authenticationDetails\": {\n            \"credentialFields\": {\n                \"REFRESH_TOKEN\": \"{{refresh-token}}\",\n                \"LOGIN_URL\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n                \"ENTERPRISE_URL\": \"/services/Soap/c/47.0/00D2p0000014Bxd\"\n            },\n\t        \"oauthClientId\": \"3MVG96_7YM2sI9wSjxQod_Z0muDIbVaHjvu7PjP9mWBbywXrQm0FtrCF3txDttYkPNV7wFsMoikye9eeoeuqr\",\n\t        \"oauthClientSecret\": \"{{oauth-client-secret}}\"\n\t\t}\n\t},\n\t\"sqlQuery\": \"SELECT Id from Opportunity limit 1;\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8084/testConnection/first-extractor",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "testConnection",
+                "first-extractor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "allTables",
+          "id": "087ad40b-ce17-4d15-84dd-4322286e9b1a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"connectionInformation\": {\n\t\t\"datasourceType\": \"SALESFORCEAPPX\",\n\t\t\"cdataLicense\": \"{{cdata-license}}\",\n\t\t\"authenticationDetails\": {\n            \"credentialFields\": {\n                \"REFRESH_TOKEN\": \"{{refresh-token}}\",\n                \"LOGIN_URL\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n                \"ENTERPRISE_URL\": \"/services/Soap/c/47.0/00D2p0000014Bxd\"\n            },\n\t        \"oauthClientId\": \"3MVG96_7YM2sI9wSjxQod_Z0muDIbVaHjvu7PjP9mWBbywXrQm0FtrCF3txDttYkPNV7wFsMoikye9eeoeuqr\",\n\t        \"oauthClientSecret\": \"{{oauth-client-secret}}\"\n\t\t}\n\t},\n\t\"tableName\": \"Lead\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8084/tableSchema/first-extractor",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "tableSchema",
+                "first-extractor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tableSchema",
+          "id": "0ad2198e-dd55-4054-9afa-ad2798f4c8e5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"connectionInformation\": {\n\t\t\"datasourceType\": \"SALESFORCEAPPX\",\n\t\t\"cdataLicense\": \"{{cdata-license}}\",\n\t\t\"authenticationDetails\": {\n            \"credentialFields\": {\n                \"REFRESH_TOKEN\": \"{{refresh-token}}\",\n                \"LOGIN_URL\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n                \"ENTERPRISE_URL\": \"/services/Soap/c/47.0/00D2p0000014Bxd\"\n            },\n\t        \"oauthClientId\": \"3MVG96_7YM2sI9wSjxQod_Z0muDIbVaHjvu7PjP9mWBbywXrQm0FtrCF3txDttYkPNV7wFsMoikye9eeoeuqr\",\n\t        \"oauthClientSecret\": \"{{oauth-client-secret}}\"\n\t\t}\n\t},\n\t\"tableName\": \"Lead\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8084/tableSchema/first-extractor",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "tableSchema",
+                "first-extractor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tablePreview",
+          "id": "03639563-3347-408d-9655-e9edc8340bca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"connectionInformation\": {\n\t\t\"datasourceType\": \"SALESFORCEAPPX\",\n\t\t\"cdataLicense\": \"{{cdata-license}}\",\n\t\t\"authenticationDetails\": {\n            \"credentialFields\": {\n                \"REFRESH_TOKEN\": \"{{refresh-token}}\",\n                \"LOGIN_URL\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n                \"ENTERPRISE_URL\": \"/services/Soap/c/47.0/00D2p0000014Bxd\"\n            },\n\t        \"oauthClientId\": \"3MVG96_7YM2sI9wSjxQod_Z0muDIbVaHjvu7PjP9mWBbywXrQm0FtrCF3txDttYkPNV7wFsMoikye9eeoeuqr\",\n\t        \"oauthClientSecret\": \"{{oauth-client-secret}}\"\n\t\t}\n\t},\n\t\"tableName\": \"Lead\",\n    \"sqlQuery\": \"SELECT * FROM Lead LIMIT 10\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8084/tablePreview/first-extractor",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "tablePreview",
+                "first-extractor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "upload",
+          "id": "cad9364b-6084-469e-8c80-28b08893b7cf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Authentication",
+                "value": "this is the value",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:8084/upload/123456.123456789?preSignedUrl=fooBar",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "upload",
+                "123456.123456789"
+              ],
+              "query": [
+                {
+                  "key": "preSignedUrl",
+                  "value": "fooBar"
+                }
+              ]
+            },
+            "description": "This is the upload endpoint uses by the extractor"
+          },
+          "response": []
+        }
+      ],
+      "id": "9fcd08a2-99b5-4430-b218-4f8b3468e73e",
+      "description": "Temporary REST API for pi-etl-bridge\nshould be identical to pi-etl-extractor except that a unique idenentifier is needed at the end of each url, i.e /testConnection becomes /testConnection/{extractorId}"
+    },
+    {
+      "name": "pi-etl-ingestion",
+      "item": [
+        {
+          "name": "Upload Schema and Data - flow",
+          "item": [
+            {
+              "name": "/datasources/ Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "0ca54f69-f844-4623-8a3b-a69c033792ba"
+                  }
+                }
+              ],
+              "id": "508d0f05-04bc-46b0-b5dc-7d5d3bd2b64d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-core-url}}/datasources/",
+                  "host": [
+                    "{{pi-etl-core-url}}"
+                  ],
+                  "path": [
+                    "datasources",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "01. Create Access Token",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "var jsonData = JSON.parse(responseBody);",
+                      "pm.environment.set(\"ingestion-api-access-token\", jsonData.payload.token)",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "id": "a19ff363-854b-4c5f-a8a2-7ba4e9243efb"
+                  }
+                }
+              ],
+              "id": "34c54bdd-d23e-4899-9e14-0690501e9997",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt-token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"datasourceId\": \"753b7bf1-5b8e-4bd7-bbb2-4e449cee6365\",\n    \"integrationId\": \"8d209a34-1425-473d-8385-3b2c20bfdbe7\"\n}"
+                },
+                "url": {
+                  "raw": "{{pi-etl-ingestion-url}}/access-token",
+                  "host": [
+                    "{{pi-etl-ingestion-url}}"
+                  ],
+                  "path": [
+                    "access-token"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02. Upload Data and Schema",
+              "id": "cc376f4e-d90d-4606-a0f7-f0464ffdf92f",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {},
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{ingestion-api-access-token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/mixed",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "schema",
+                      "value": "{\n  \"type\": \"record\",\n  \"name\": \"test_schema\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"name\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"email\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"age\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"rand\",\n      \"type\": \"float\"\n    },\n    {\n      \"name\": \"assigned\",\n      \"type\": \"boolean\"\n    }\n  ]\n}",
+                      "contentType": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "primaryKeys",
+                      "value": "id",
+                      "type": "text"
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/100 Sales Records.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "file2",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/50000 Sales Records.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/valid.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "invalidFile",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/wrong-field-type.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "invalidFile2",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/field-missing-in-schema.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "validNullValuesFile",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/valid-null-values.csv"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+                  "host": [
+                    "{{pi-etl-ingestion-url}}"
+                  ],
+                  "path": [
+                    "ingestion",
+                    "data"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02. [Navid] Upload Data and Schema",
+              "id": "9eaa845d-3d44-4f31-9363-d6855bd5d57f",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {},
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer MjZlMmY1NGMtNmZhMy00ZDdkLWJhMTctZmRkNGQ2OTRjYmUwOmVlMDM2ODRhLTc1NzMtNDZkZS1iOGUxLWZlZjYwOWM0NDUyNDphMmYyYjZiZTJjMDg0ZmY5OTY4MGEyYWZhOGY3ZTJhODpQY1pvTEFORjQwSXNXM09yYXp1RU95OGNXMUxEM2xxYjZQblI5NjliRVYwT3NoaERBcm9XYmlPV3lIMERkSzFm",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/mixed",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "schema",
+                      "value": "{\n  \"type\": \"record\",\n  \"name\": \"test_schema\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"name\",\n      \"type\": [\"null\", \"string\"]\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"email\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"age\",\n      \"type\": [\"null\", \"int\"]\n    },\n    {\n      \"name\": \"rand\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"assigned\",\n      \"type\": \"boolean\"\n    }\n  ]\n}",
+                      "contentType": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "primaryKeys",
+                      "value": "id",
+                      "type": "text"
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/100 Sales Records.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "file2",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/50000 Sales Records.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/home/I526047/signavio/pi-etl-ingestion/app/src/test/resources/valid.csv"
+                    },
+                    {
+                      "key": "invalidFile",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/wrong-field-type.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "invalidFile2",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/field-missing-in-schema.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "validNullValuesFile",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/valid-null-values.csv",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+                  "host": [
+                    "{{pi-etl-ingestion-url}}"
+                  ],
+                  "path": [
+                    "ingestion",
+                    "data"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02. Upload Data and Schema Copy",
+              "id": "412af33b-a0c3-4561-ac53-1999776f55be",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {},
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{ingestion-api-access-token}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/mixed",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "schema",
+                      "value": "{\n  \"type\": \"record\",\n  \"name\": \"test_schema\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"name\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"email\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"age\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"rand\",\n      \"type\": \"float\"\n    },\n    {\n      \"name\": \"assigned\",\n      \"type\": \"boolean\"\n    }\n  ]\n}",
+                      "contentType": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "primaryKeys",
+                      "value": "id",
+                      "type": "text"
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/100 Sales Records.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "file2",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/50000 Sales Records.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/valid.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "invalidFile",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/wrong-field-type.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "invalidFile2",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/field-missing-in-schema.csv",
+                      "disabled": true
+                    },
+                    {
+                      "key": "validNullValuesFile",
+                      "type": "file",
+                      "src": "/Users/i526278/repos/pi-etl-ingestion/app/src/test/resources/valid-null-values.csv"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+                  "host": [
+                    "{{pi-etl-ingestion-url}}"
+                  ],
+                  "path": [
+                    "ingestion",
+                    "data"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "02. Upload Data and Schema",
+              "id": "bba9e80b-28e6-45d8-b13f-ed64c3de9c36",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {},
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer NmU2NjlhODktZDhhNy00Y2ViLTk2MjktMzU2ZTlhNjk1ZDA4OjVjYmRkODZlLWQ0OWMtNGZhNi05NDI1LWQ0ZmNlMTU4NTM1OToxMTExMTExMTAwMDAxMTExMDAwMDExMTExMTExMTExMTpxMVhHSU5jY1diSk03cWlrSGkzQUlHdEUxeWRJTG1NVFBkTnJOUlpuMXNEZm5lUHR3MTE2amFnOHBxbnkyS0Ns",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/mixed",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "schema",
+                      "value": "{\n  \"type\": \"record\",\n  \"name\": \"Sales5M_2\",\n  \"fields\": [\n    {\n      \"name\": \"Region\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Country\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Item_Type\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Sales_Channel\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Order_Priority\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Order_Date\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Order_ID\",\n      \"type\": \"long\"\n    },\n    {\n      \"name\": \"Ship_Date\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Units_Sold\",\n      \"type\": \"long\"\n    },\n    {\n      \"name\": \"Unit_Price\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Unit_Cost\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Total_Revenue\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Total_Cost\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Total_Profit\",\n      \"type\": \"double\"\n    }\n  ]\n}",
+                      "contentType": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "primaryKeys",
+                      "value": "Order_ID",
+                      "type": "text"
+                    },
+                    {
+                      "key": "file1",
+                      "type": "file",
+                      "src": "/Users/i526278/Downloads/5m Sales Records.csv"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+                  "host": [
+                    "{{pi-etl-ingestion-url}}"
+                  ],
+                  "path": [
+                    "ingestion",
+                    "data"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "62d46fbc-9292-4a1d-a8e8-f1a11aab0997",
+                  "name": "02. Upload Data and Schema - Big file",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer NmU2NjlhODktZDhhNy00Y2ViLTk2MjktMzU2ZTlhNjk1ZDA4OjVjYmRkODZlLWQ0OWMtNGZhNi05NDI1LWQ0ZmNlMTU4NTM1OToxMTExMTExMTAwMDAxMTExMDAwMDExMTExMTExMTExMTpxMVhHSU5jY1diSk03cWlrSGkzQUlHdEUxeWRJTG1NVFBkTnJOUlpuMXNEZm5lUHR3MTE2amFnOHBxbnkyS0Ns",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/mixed",
+                        "type": "text",
+                        "disabled": true
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "schema",
+                          "value": "{\n  \"type\": \"record\",\n  \"name\": \"Sales5M_2\",\n  \"fields\": [\n    {\n      \"name\": \"Region\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Country\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Item_Type\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Sales_Channel\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Order_Priority\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Order_Date\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Order_ID\",\n      \"type\": \"long\"\n    },\n    {\n      \"name\": \"Ship_Date\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"Units_Sold\",\n      \"type\": \"long\"\n    },\n    {\n      \"name\": \"Unit_Price\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Unit_Cost\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Total_Revenue\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Total_Cost\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"Total_Profit\",\n      \"type\": \"double\"\n    }\n  ]\n}",
+                          "contentType": "",
+                          "type": "text"
+                        },
+                        {
+                          "key": "primaryKeys",
+                          "value": "Order_ID",
+                          "type": "text"
+                        },
+                        {
+                          "key": "file1",
+                          "type": "file",
+                          "src": [
+                            "/Users/i526278/Downloads/5m Sales Records.csv"
+                          ]
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+                      "host": [
+                        "{{pi-etl-ingestion-url}}"
+                      ],
+                      "path": [
+                        "ingestion",
+                        "data"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "plain",
+                  "header": [
+                    {
+                      "key": "Date",
+                      "value": "Wed, 16 Feb 2022 21:50:27 GMT"
+                    },
+                    {
+                      "key": "Transfer-Encoding",
+                      "value": "chunked"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\"status\":200,\"payload\":null}"
+                }
+              ]
+            }
+          ],
+          "id": "13de1c8c-6720-42a8-b7a4-9a5ee03066a0"
+        },
+        {
+          "name": "Get Access Token",
+          "id": "ac60ca50-4f90-4658-a75a-a6117ade7a5c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/access-token/bfbd578a-469a-400b-8dce-2144aeeaba1c",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "access-token",
+                "bfbd578a-469a-400b-8dce-2144aeeaba1c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"ingestion-api-access-token\", jsonData.payload.token)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "e126d5c1-0584-47a7-b664-d1bba8cffa00"
+              }
+            }
+          ],
+          "id": "3b9999d7-8f8e-43c2-893f-c73962dfe326",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"datasourceId\": \"753b7bf1-5b8e-4bd7-bbb2-4e449cee6365\",\n    \"integrationId\": \"8d209a34-1425-473d-8385-3b2c20bfdbe7\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/access-token",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "access-token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "csv: Upload Data and Schema",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e36e5dc1-23ee-4f88-b2c9-d7405b65c63a",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"pi-etl-ingestion-execution-id\", jsonData.payload.executionId)",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "c5b99f70-6b30-497c-9b8b-62892d3cc98f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ingestion-api-access-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "schema",
+                  "value": "{\n  \"type\": \"record\",\n  \"name\": \"model\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"type\": \"string\",\n      \"size\": 32\n    },\n    {\n      \"name\": \"name\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"namespace\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"headRevisionId\",\n      \"type\": \"string\",\n      \"size\": 32\n    },\n    {\n      \"name\": \"publishedRevisionId\",\n      \"type\": [\n        \"null\",\n        \"string\"\n      ],\n      \"size\": 32\n    },\n    {\n      \"name\": \"createdAt\",\n      \"type\": \"long\",\n      \"logicalType\": \"timestamp-millis\"\n    },\n    {\n      \"name\": \"publishedAt\",\n      \"type\": \"long\",\n      \"logicalType\": \"timestamp-millis\"\n    },\n    {\n      \"name\": \"parentId\",\n      \"type\": \"string\",\n      \"size\": 32\n    },\n    {\n      \"name\": \"directoryName\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"lastUpdatedAt\",\n      \"type\": \"string\",\n      \"logicalType\": \"timestamp-millis\"\n    },\n    {\n      \"name\": \"authorId\",\n      \"type\": \"string\",\n      \"size\": 32\n    },\n    {\n      \"name\": \"authorName\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+                  "description": "schema for dates and times file",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "description": "dates and times file",
+                  "type": "file",
+                  "src": "/Users/shumailarshad/models.csv"
+                },
+                {
+                  "key": "primaryKeys",
+                  "value": "id",
+                  "description": "primary keys for dates and times file",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "ingestion",
+                "data"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PEX-23390 csv: Upload Data and Schema",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"pi-etl-ingestion-execution-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "b5255733-5af0-4461-8a4a-fa88e003519c"
+              }
+            }
+          ],
+          "id": "f698453e-0d0c-481a-8add-804fa0606000",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ingestion-api-access-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "schema",
+                  "value": "{\n  \"type\": \"record\",\n  \"delimiter\": \";\",\n  \"name\": \"test3\",\n  \"fields\": [\n    {\n      \"name\": \"CASE_ID\",\n      \"type\": [\n        \"null\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"ACTIVITY\",\n      \"type\": [\n        \"null\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"EVENT_DATE\",\n      \"type\": [\n        \"null\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"Automation\",\n      \"type\": [\n        \"null\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                  "description": "schema for dates and times file",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "description": "dates and times file",
+                  "type": "file",
+                  "src": "4Qe7XOjAg/20220617_125522_PYTHON_ACTIVITY_TABLE.csv"
+                },
+                {
+                  "key": "primaryKeys",
+                  "value": "CASE_ID",
+                  "description": "primary keys for dates and times file",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "ingestion",
+                "data"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tsv: Upload Data and Schema",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"pi-etl-ingestion-execution-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "82c3efba-6bcd-44de-8ce2-0e177b3b1f8a"
+              }
+            }
+          ],
+          "id": "bc125581-6778-4434-8edb-a468adc273e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ingestion-api-access-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "schema",
+                  "value": "{\n    \"type\": \"record\",\n    \"name\": \"users\",\n    \"fields\": [\n        {\n            \"name\": \"id\",\n            \"type\": \"int\"\n        },\n        {\n            \"name\": \"birthdate\",\n            \"type\": [\n                \"null\",\n                {\n                    \"type\": \"int\",\n                    \"logicalType\": \"date\"\n                }\n            ]\n        },\n        {\n            \"name\": \"createdAt\",\n            \"type\": {\n                \"type\": \"long\",\n                \"logicalType\": \"timestamp-millis\"\n            }\n        },\n        {\n            \"name\": \"arrivalTime\",\n            \"type\": {\n                \"type\": \"int\",\n                \"logicalType\": \"time-millis\"\n            }\n        },\n        {\n            \"name\": \"username\",\n            \"type\": [\n                \"null\",\n                \"string\"\n            ]\n        }\n    ]\n}",
+                  "description": "schema for dates and times file",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "description": "dates and times file",
+                  "type": "file",
+                  "src": "GGfKr7iJg/tsv-dates-times.tsv"
+                },
+                {
+                  "key": "primaryKeys",
+                  "value": "id,username",
+                  "description": "primary keys for dates and times file",
+                  "type": "text"
+                },
+                {
+                  "key": "delimiter",
+                  "value": "\\t",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "ingestion",
+                "data"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tsv2: Upload Data and Schema",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"pi-etl-ingestion-execution-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "dbe6b058-1e66-4047-bf5d-c9c394f5afac"
+              }
+            }
+          ],
+          "id": "8713e25a-aa86-478f-aa61-01fee09c70cb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ingestion-api-access-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "schema",
+                  "value": "{\n  \"type\": \"record\",\n  \"name\": \"test_tsv5\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"name\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"description\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"email\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"age\",\n      \"type\": \"int\"\n    },\n    {\n      \"name\": \"rand\",\n      \"type\": \"double\"\n    },\n    {\n      \"name\": \"assigned\",\n      \"type\": \"boolean\"\n    }\n  ]\n}\n",
+                  "description": "schema for dates and times file",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "description": "dates and times file",
+                  "type": "file",
+                  "src": "oFAF-JmeR/tab-working.tsv"
+                },
+                {
+                  "key": "primaryKeys",
+                  "value": "id,name",
+                  "description": "primary keys for dates and times file",
+                  "type": "text"
+                },
+                {
+                  "key": "delimiter",
+                  "value": "\t",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/ingestion/data",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "ingestion",
+                "data"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get execution status",
+          "id": "9df591a2-b23f-482e-ba90-a5fc5549e7cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ingestion-api-access-token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/ingestions/{{pi-etl-ingestion-execution-id}}/status",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "ingestions",
+                "{{pi-etl-ingestion-execution-id}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get ingestion execution history",
+          "id": "c3d937d6-01a8-4dda-9ac4-59311d7e5a11",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/integrations/4661e6ff-a69a-4b2a-b576-c8144c7a120d/execution-history",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "integrations",
+                "4661e6ff-a69a-4b2a-b576-c8144c7a120d",
+                "execution-history"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "send message (delete later)",
+          "id": "07562e87-87d4-4535-8fad-711ba753e5fc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/integrations/4661e6ff-a69a-4b2a-b576-c8144c7a120d/execution-history",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "integrations",
+                "4661e6ff-a69a-4b2a-b576-c8144c7a120d",
+                "execution-history"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read message (delete later) Copy",
+          "id": "23c44ebc-6b61-4e22-86b2-7f76857c4266",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-ingestion-url}}/integrations/4661e6ff-a69a-4b2a-b576-c8144c7a120d/execution-history",
+              "host": [
+                "{{pi-etl-ingestion-url}}"
+              ],
+              "path": [
+                "integrations",
+                "4661e6ff-a69a-4b2a-b576-c8144c7a120d",
+                "execution-history"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "41500294-0918-4a29-b169-c5c74b98066a"
+    },
+    {
+      "name": "create standalone integration",
+      "item": [
+        {
+          "name": "create data source",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "af86366c-4dd2-4f9b-a72f-b0eb3a8e11fb"
+              }
+            }
+          ],
+          "id": "0b86f8b2-8b77-4219-99a9-599a5c6372c0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"user\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\", \n            \"value\": \"secret password\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true, \n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\", \n            \"value\": \"security token\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true, \n            \"position\": 2\n        }\n    ]\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/datasources/",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "datasources",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create standalone integration",
+          "id": "7ba8b2d1-17a1-4be0-a2d9-c57eeb141329",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"New Integration\",\n    \"datasourceId\": \"{{data-source-id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete data source (cleanup)",
+          "id": "5db379cc-66d3-44e7-b55b-22ff5fe51200",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "datasources",
+                "{{data-source-id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6ce55c1e-53e8-4d5d-ab68-0e1dce98d456"
+    },
+    {
+      "name": "get-all-tables: e2e",
+      "item": [
+        {
+          "name": "01- create data model from template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "cd690980-3afe-4f3d-b201-8cffba258be5"
+              }
+            }
+          ],
+          "id": "4346f735-b562-4ce8-a322-9fad5aff78c8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/templates",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02- create integration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"integration-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "cb3bfd24-2943-4a5c-97bf-faf97203a6a7"
+              }
+            }
+          ],
+          "id": "0f2276e2-e9b8-48c7-9087-807555cc6156",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"dummy-integration-name-1\",\n  \"dataModelId\": \"{{data-model-id}}\",\n  \"datasource\": {\n    \"name\": \"dummy-datasource-name-1\",\n    \"type\": \"OAUTH\",\n    \"system\": \"SALESFORCEAPPX\",\n    \"credentialFields\": [\n      {\n        \"type\": \"REFRESH_TOKEN\",\n        \"value\": \"{{refresh-token}}\",\n        \"position\": 0\n      },\n      {\n        \"type\": \"LOGIN_URL\",\n        \"value\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n        \"position\": 1\n      },\n            {\n        \"type\": \"ENTERPRISE_URL\",\n        \"value\": \"/services/Soap/c/47.0/00D2p0000014Bxd\",\n        \"position\": 2\n      }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03- list all available tables in a given integration",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "18df5ef7-0c55-48ab-afe9-b0a800ed8c66"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "console.log(JSON.parse(responseBody));"
+                ],
+                "type": "text/javascript",
+                "id": "0b64be4e-dce7-4817-a696-b42d9fc1201a"
+              }
+            }
+          ],
+          "id": "5e6c3bef-1ffa-4523-a275-466ca98f1e6f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations/{{integration-id}}/metadata/tables",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations",
+                "{{integration-id}}",
+                "metadata",
+                "tables"
+              ]
+            },
+            "description": "Get all available table names for a given integration by querying the metadata API on the datasource via etl-extractor"
+          },
+          "response": []
+        }
+      ],
+      "id": "0c3ce3c4-8a60-437a-b56d-c73b66c236f9"
+    },
+    {
+      "name": "update-data-model business activities: e2e",
+      "item": [
+        {
+          "name": "01- create data model from template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "e28046ee-37b9-44f5-a80b-9a94b6a38c49"
+              }
+            }
+          ],
+          "id": "7b47a469-1a7f-41e7-99c1-ace4bbeeebe6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/templates",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02 - get hero data model",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"business-process-id\", jsonData.payload.businessProcess.id)",
+                  "pm.environment.set(\"business-object-id\", jsonData.payload.businessObjects[0].id)",
+                  "pm.environment.set(\"business-object2-id\", jsonData.payload.businessObjects[1].id)"
+                ],
+                "type": "text/javascript",
+                "id": "03750d00-9e3b-42f8-805e-2a74165d655b"
+              }
+            }
+          ],
+          "id": "d8324860-6f9e-4669-ab0c-76ff33779743",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/hero/{{data-model-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "hero",
+                "{{data-model-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03- update data model business activities",
+          "id": "d35e0f26-a57d-4e46-9cef-9bc4c8fd9723",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"9f014f7e-55e6-4265-a4da-f4426f5c24af\",\n  \"businessProcess\": {\n    \"id\": \"{{business-process-id}}\",\n    \"activities\": [\n      {\n        \"name\": \"activity1\",\n        \"relations\": [\n          \"{{business-object-id}}\"\n        ]\n      },\n      {\n        \"name\": \"activity2\",\n        \"relations\": [\n           \"{{business-object-id}}\"\n        ]\n      },\n      {\n        \"name\": \"activity3\",\n        \"relations\": [\n          \"{{business-object2-id}}\"\n        ]\n      },\n      {\n        \"name\": \"activity4\",\n        \"relations\": []\n      }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/hero/{{data-model-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "hero",
+                "{{data-model-id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6be72109-63db-450e-ba91-8ee7caeff8d7",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ],
+            "id": "01b0f30f-dbaf-4df3-8672-31c7c9d9443e"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ],
+            "id": "5169b194-8446-4a2d-9aa1-d206e2383047"
+          }
+        }
+      ]
+    },
+    {
+      "name": "preview business-object: e2e",
+      "item": [
+        {
+          "name": "01- create data model from template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "e72ca71a-5836-4cdb-bec6-a0b2db49d841"
+              }
+            }
+          ],
+          "id": "8b4d876f-301b-4d20-b0df-499a4b065496",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/templates",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02 - get hero data model",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"business-process-id\", jsonData.payload.businessProcess.id)",
+                  "pm.environment.set(\"business-object-id\", jsonData.payload.businessObjects[0].id)",
+                  "pm.environment.set(\"business-object2-id\", jsonData.payload.businessObjects[1].id)"
+                ],
+                "type": "text/javascript",
+                "id": "1b6c8b85-370e-4fec-960d-aa0bd8cc91f5"
+              }
+            }
+          ],
+          "id": "e8a14f4e-25cd-48f0-8615-fa788f60e7e3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/hero/{{data-model-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "hero",
+                "{{data-model-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03 - trigger ETL",
+          "id": "06363789-99dc-48fd-bd58-f5892b259541",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"integrationId\":\"7fb221f5-17fd-46ea-af6e-0138fead2239\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/executions",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "executions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "04 - preview business object",
+          "id": "adc387e2-e66b-42ea-8ffc-bbcfe615e65d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"sql\": \"SELECT * FROM lead\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/business-objects/{{business-object-id}}/preview",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "business-objects",
+                "{{business-object-id}}",
+                "preview"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "60b95057-384c-4186-b4fb-f7e400a590e2",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ],
+            "id": "abedc65e-7a2b-4966-bb04-0caa10ad0e06"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ],
+            "id": "a675fdf5-1e70-4064-a510-1b5495a3e0d1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "get-all-columns in table: e2e",
+      "item": [
+        {
+          "name": "01- create data model from template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "ea6d769e-b9bc-423e-8733-8853d42c2ae2"
+              }
+            }
+          ],
+          "id": "6ce925b4-8c5b-4b3f-adaa-835500511660",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/templates",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02- create integration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"integration-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "aa18e899-acfe-4e57-9c68-90c6aead1562"
+              }
+            }
+          ],
+          "id": "cc3e9aa4-c43e-4da1-8638-05ce07fb1b00",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"dummy-integration-name-1\",\n  \"dataModelId\": \"{{data-model-id}}\",\n  \"datasource\": {\n    \"name\": \"dummy-datasource-name-1\",\n    \"type\": \"OAUTH\",\n    \"system\": \"SALESFORCEAPPX\",\n    \"credentialFields\": [\n      {\n        \"type\": \"REFRESH_TOKEN\",\n        \"value\": \"{{refresh-token}}\",\n        \"position\": 0\n      },\n      {\n        \"type\": \"LOGIN_URL\",\n        \"value\": \"https://signavio-pkg-dev-ed.my.salesforce.com\",\n        \"position\": 1\n      },\n            {\n        \"type\": \"ENTERPRISE_URL\",\n        \"value\": \"/services/Soap/c/47.0/00D2p0000014Bxd\",\n        \"position\": 2\n      }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03- list all available columns for a table in a given integration",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"table-name\", \"Account\")"
+                ],
+                "type": "text/javascript",
+                "id": "f788dd73-028d-4232-a40c-dabef4a042ba"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "console.log(JSON.parse(responseBody));"
+                ],
+                "type": "text/javascript",
+                "id": "1b368a61-2a17-4eac-8144-18230546fb8c"
+              }
+            }
+          ],
+          "id": "17a729b7-634b-47a0-b4ef-7da8289f3169",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations/{{integration-id}}/metadata/tables/{{table-name}}/columns",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations",
+                "{{integration-id}}",
+                "metadata",
+                "tables",
+                "{{table-name}}",
+                "columns"
+              ]
+            },
+            "description": "Get all available table names for a given integration by querying the metadata API on the datasource via etl-extractor"
+          },
+          "response": []
+        }
+      ],
+      "id": "cd664deb-390f-4b1b-958c-60ade278824f"
+    },
+    {
+      "name": "Initial Load Partitionting",
+      "item": [
+        {
+          "name": "00.1 - create data model from template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-model-id\", jsonData.payload.id)",
+                  "pm.environment.set(\"integration-id\", jsonData.payload.integrations[0])"
+                ],
+                "type": "text/javascript",
+                "id": "1322ef49-817f-44d3-948a-6cd426f6844e"
+              }
+            }
+          ],
+          "id": "79a7d5cc-5c19-45bb-97de-5f9608ac73a8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"piUploadToken\": \"dummyPiUploadToken\",\n  \"templateName\": \"SALESFORCE_LEAD_TO_QUOTE\",\n  \"processId\": \"dummyProcessId\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/data-models/templates",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "data-models",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "00.2 - create data source",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"data-source-id\", jsonData.payload.id)",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "fc1f45f5-f170-4d7e-9e5c-5395ffc5f14d"
+              }
+            }
+          ],
+          "id": "a596807c-43c8-47f6-a075-3c6e1a68ce91",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Datasource Name\",\n    \"type\": \"USER_AND_PASSWORD\",\n    \"system\": \"SALESFORCE\",\n    \"credentialFields\": [\n        {\n            \"type\": \"USER_NAME\",\n            \"value\": \"\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 0\n        },\n        {\n            \"type\": \"PASSWORD\",\n            \"value\": \"\",\n            \"label\": \"user label\",\n            \"description\": \"user description\",\n            \"mandatory\": true,\n            \"position\": 1\n        },\n        {\n            \"type\": \"SECURITY_TOKEN\",\n            \"value\": \"\",\n            \"label\": \"sec token label\",\n            \"description\": \"sec token description\",\n            \"mandatory\": true,\n            \"position\": 2\n        }\n    ]\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/datasources/",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "datasources",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "00.3 - update data source - set valid credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "1e06ace9-e66b-4385-a360-a4621ccedfdc"
+              }
+            }
+          ],
+          "id": "afd1b146-a6dc-4736-8b33-8a93275a6e50",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"credentialFields\": [\n    {\n      \"type\": \"USER_NAME\",\n      \"value\": \"pi.salesforce-appexchange@signavio.com.pkg.admin\"\n    },\n    {\n      \"type\": \"PASSWORD\",\n      \"value\": \"3cBmHSGXtunXQtxhC6a9RaU9\"\n    },\n    {\n      \"type\": \"SECURITY_TOKEN\",\n      \"value\": \"vxOKBOw4v4xrCP5EnbbZ0nrRN\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/datasources/{{data-source-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "datasources",
+                "{{data-source-id}}"
+              ]
+            },
+            "description": "Validate a stored datasource.\nThe validity flag of datasource is expected to be updated accordingly."
+          },
+          "response": []
+        },
+        {
+          "name": "00.3 connect integration to data source",
+          "id": "53980f31-5c8a-4ae9-ac9e-13b3195e454d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"datasourceId\": \"{{data-source-id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations/{{integration-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations",
+                "{{integration-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "01 - get all tables in an integration - with initial load strategy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var table = jsonData.payload.filter( t => t.name === 'Account')",
+                  "console.log(table[0])",
+                  "pm.environment.set(\"table-id\", table[0].id)"
+                ],
+                "type": "text/javascript",
+                "id": "d7b02068-ae8b-447c-a066-49166fad71bc"
+              }
+            }
+          ],
+          "id": "576bfd0b-cda0-4469-85db-284f12abfe9f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-core-url}}/integrations/{{integration-id}}/tables",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "integrations",
+                "{{integration-id}}",
+                "tables"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02 - get number of partitions given strategy params",
+          "id": "bebc9045-aca8-4066-9c1f-a7e9532a0885",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy\": \"DATE_TIME\",\n  \"fields\": [\n    {\n      \"key\": \"column\",\n      \"value\": \"lastModifiedDate\",\n      \"type\": \"TEXT\"\n    },\n    {\n      \"key\": \"startDate\",\n      \"value\": \"2020-01-01 00:00\",\n      \"type\": \"DATE\"\n    },\n    {\n      \"key\": \"endDate\",\n      \"value\": \"2020-06-01 00:00\",\n      \"type\": \"DATE\"\n    },\n    {\n      \"key\": \"partitionSize\",\n      \"value\": \"1\",\n      \"type\": \"INTEGER\"\n    },\n    {\n      \"key\": \"partitionUnit\",\n      \"value\": \"MONTH\",\n      \"type\": \"TEXT\"\n    },\n    {\n      \"key\": \"format\",\n      \"value\": \"yyyy-MM-dd HH:mm\",\n      \"type\": \"TEXT\"\n    }\n  ],\n  \"parallel\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/calculate-partitions",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "calculate-partitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02 - get number of partitions given strategy params Copy",
+          "id": "977ffec0-bea3-42d9-a0e5-399f6af79b84",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy\": \"DATE_TIME\",\n  \"fields\": [\n    {\n      \"key\": \"column\",\n      \"value\": \"lastModifiedDate\",\n      \"type\": \"TEXT\"\n    },\n    {\n      \"key\": \"startDate\",\n      \"value\": \"2020-01-01 00:00\",\n      \"type\": \"DATE\"\n    },\n    {\n      \"key\": \"endDate\",\n      \"value\": \"2020-06-01 00:00\",\n      \"type\": \"DATE\"\n    },\n    {\n      \"key\": \"partitionSize\",\n      \"value\": \"1\",\n      \"type\": \"INTEGER\"\n    },\n    {\n      \"key\": \"partitionUnit\",\n      \"value\": \"MONTH\",\n      \"type\": \"TEXT\"\n    },\n    {\n      \"key\": \"format\",\n      \"value\": \"yyyy-MM-dd HH:mm\",\n      \"type\": \"TEXT\"\n    }\n  ],\n  \"parallel\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/calculate-partitions",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "calculate-partitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03 - update initial load strategy for a given table",
+          "id": "8b04d32f-fb61-4981-97bb-804c3ed3dfba",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"initialLoadStrategy\": {\n        \"strategyType\": \"DATE_TIME\",\n        \"fields\": [\n            {\n                \"key\": \"column\",\n                \"value\": \"lastModifiedDate\",\n                \"type\": \"TEXT\"\n            },\n            {\n                \"key\": \"startDate\",\n                \"value\": \"2020-01-01 00:00\",\n                \"type\": \"DATE\"\n            },\n            {\n                \"key\": \"endDate\",\n                \"value\": \"2020-06-01 00:00\",\n                \"type\": \"DATE\"\n            },\n            {\n                \"key\": \"partitionSize\",\n                \"value\": \"1\",\n                \"type\": \"INTEGER\"\n            },\n            {\n                \"key\": \"partitionUnit\",\n                \"value\": \"MONTH\",\n                \"type\": \"TEXT\"\n            },\n            {\n                \"key\": \"format\",\n                \"value\": \"yyyy-MM-dd HH:mm\",\n                \"type\": \"TEXT\"\n            }\n        ],\n        \"parallel\": false\n    }\n}"
+            },
+            "url": {
+              "raw": "{{pi-etl-core-url}}/tables/{{table-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "tables",
+                "{{table-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "04 - execute initial load for a given table",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "pm.environment.set(\"initial-load-execution-id\", jsonData.payload.id)"
+                ],
+                "type": "text/javascript",
+                "id": "54ea211c-c7a6-403e-a07a-d74faeae8f30"
+              }
+            }
+          ],
+          "id": "32b7f3bd-71d0-4247-9801-960d61e4c30d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-core-url}}/executions/tables/{{table-id}}/initial-load",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "executions",
+                "tables",
+                "{{table-id}}",
+                "initial-load"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "04.1 - get execution history to find extraction step id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "579f70a7-656c-48ea-8aa0-26b51c381476"
+              }
+            }
+          ],
+          "id": "bcead6f8-e2c4-4087-9930-1a82bc929e4b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-core-url}}/executions/history/{{initial-load-execution-id}}/executions",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "executions",
+                "history",
+                "{{initial-load-execution-id}}",
+                "executions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "05 - retry failed partition",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "12ac2d67-bf83-4979-b9c9-01150726f0e7"
+              }
+            }
+          ],
+          "id": "c893a3b4-c621-4d38-8306-1682a36b9a45",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt-token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{pi-etl-core-url}}/executions/initial-load/retry-step/{{extraction-step-id}}",
+              "host": [
+                "{{pi-etl-core-url}}"
+              ],
+              "path": [
+                "executions",
+                "initial-load",
+                "retry-step",
+                "{{extraction-step-id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5cffc9b5-0f64-4930-994a-3aa7584fb2ba"
+    }
+  ]
+}
